@@ -1,4 +1,13 @@
 {
-  "name": "TreeHealAPP",
-  "displayName": "TreeHealAPP"
+  "expo": {
+    "name": "TreeHeal Insurance App",
+    "slug": "treeheal-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "platforms": ["ios", "android", "web"],
+    "web": {
+      "bundler": "metro"
+    }
+  }
 }
