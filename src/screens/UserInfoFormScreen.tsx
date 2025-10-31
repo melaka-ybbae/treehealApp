@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, ScrollView, TextInput } from 'react-nativ
 import { KOREAN_REGIONS } from '../utils/constants';
 import { useInsurance } from '../context/InsuranceContext';
 import { styles } from './UserInfoFormScreen.styles';
+import { formatPhoneNumber, formatBirthDate, isValidPhoneNumber, isValidBirthDate } from '../utils/formatters';
 
 interface UserInfoFormScreenProps {
   onNext: () => void;
@@ -14,8 +15,10 @@ export default function UserInfoFormScreen({ onNext }: UserInfoFormScreenProps) 
   const isValid =
     formData.name &&
     formData.birthdate &&
+    isValidBirthDate(formData.birthdate) &&
     formData.gender &&
     formData.phone &&
+    isValidPhoneNumber(formData.phone) &&
     formData.region;
 
   return (
@@ -28,7 +31,7 @@ export default function UserInfoFormScreen({ onNext }: UserInfoFormScreenProps) 
           <Text style={styles.label}>이름</Text>
           <TextInput
             style={styles.input}
-            value={formData.name}
+            value={formData.name || ''}
             onChangeText={(text) => updateFormData({ name: text })}
             placeholder="홍길동"
             placeholderTextColor="#999"
@@ -40,10 +43,15 @@ export default function UserInfoFormScreen({ onNext }: UserInfoFormScreenProps) 
             <Text style={styles.label}>생년월일</Text>
             <TextInput
               style={styles.input}
-              value={formData.birthdate}
-              onChangeText={(text) => updateFormData({ birthdate: text })}
-              placeholder="1990-01-01"
+              value={formData.birthdate || ''}
+              onChangeText={(text) => {
+                const formatted = formatBirthDate(text);
+                updateFormData({ birthdate: formatted });
+              }}
+              placeholder="YYYY-MM-DD"
               placeholderTextColor="#999"
+              keyboardType="numeric"
+              maxLength={10}
             />
           </View>
           <View style={styles.formGroupHalf}>
@@ -89,11 +97,15 @@ export default function UserInfoFormScreen({ onNext }: UserInfoFormScreenProps) 
           <Text style={styles.label}>연락처</Text>
           <TextInput
             style={styles.input}
-            value={formData.phone}
-            onChangeText={(text) => updateFormData({ phone: text })}
-            placeholder="010-0000-0000"
+            value={formData.phone || ''}
+            onChangeText={(text) => {
+              const formatted = formatPhoneNumber(text);
+              updateFormData({ phone: formatted });
+            }}
+            placeholder="010-1234-5678"
             placeholderTextColor="#999"
             keyboardType="phone-pad"
+            maxLength={13}
           />
         </View>
 
@@ -131,7 +143,7 @@ export default function UserInfoFormScreen({ onNext }: UserInfoFormScreenProps) 
             <Text style={styles.label}>상세 지역</Text>
             <TextInput
               style={styles.input}
-              value={formData.detailedRegion}
+              value={formData.detailedRegion || ''}
               onChangeText={(text) => updateFormData({ detailedRegion: text })}
               placeholder="예: 성남시, 강남구 등"
               placeholderTextColor="#999"

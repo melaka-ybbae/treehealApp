@@ -5,6 +5,22 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  centerContent: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 60,
+  },
+  loadingText: {
+    fontSize: 40,
+    color: '#6B7280',
+    marginTop: 40,
+  },
+  emptyText: {
+    fontSize: 44,
+    color: '#6B7280',
+    marginBottom: 60,
+    textAlign: 'center',
+  },
   content: {
     padding: 60,
     alignItems: 'center',

@@ -8,6 +8,21 @@ export const styles = StyleSheet.create({
     padding: 60,
     backgroundColor: '#fff',
   },
+  centerContent: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingText: {
+    fontSize: 40,
+    color: '#6B7280',
+    marginTop: 40,
+  },
+  emptyText: {
+    fontSize: 44,
+    color: '#6B7280',
+    marginBottom: 60,
+    textAlign: 'center',
+  },
   title: {
     fontSize: 56,
     fontWeight: 'bold',

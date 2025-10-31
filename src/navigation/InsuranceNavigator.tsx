@@ -27,7 +27,7 @@ type StepType =
 export default function InsuranceNavigator() {
   const [currentStep, setCurrentStep] = useState<StepType>('splash');
 
-  const handleNext = () => {
+  const handleNext = (skipDetail?: boolean) => {
     const steps: StepType[] = [
       'splash',
       'realtime',
@@ -40,6 +40,13 @@ export default function InsuranceNavigator() {
       'confirmation',
     ];
     const currentIndex = steps.indexOf(currentStep);
+
+    // consultant 화면에서 skipDetail이 true면 consultantDetail 건너뛰기
+    if (currentStep === 'consultant' && skipDetail) {
+      setCurrentStep('userInfo');
+      return;
+    }
+
     if (currentIndex < steps.length - 1) {
       setCurrentStep(steps[currentIndex + 1]);
     }

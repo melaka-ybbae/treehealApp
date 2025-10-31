@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator, Alert } from 'react-native';
 import { CONSULTATION_TYPES } from '../utils/constants';
 import { CheckIcon } from '../components/Icons';
 import { useInsurance } from '../context/InsuranceContext';
 import AgreementModal from '../components/AgreementModal';
 import { styles } from './ReviewScreen.styles';
+import { submitConsultation } from '../services/consultationService';
 
 interface ReviewScreenProps {
   onNext: () => void;
@@ -13,14 +14,50 @@ interface ReviewScreenProps {
 export default function ReviewScreen({ onNext }: ReviewScreenProps) {
   const { formData } = useInsurance();
   const [showAgreementModal, setShowAgreementModal] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = () => {
     setShowAgreementModal(true);
   };
 
-  const handleAgreementComplete = () => {
+  const handleAgreementComplete = async () => {
     setShowAgreementModal(false);
-    onNext();
+    setIsSubmitting(true);
+
+    try {
+      // 서버에 상담 신청
+      const result = await submitConsultation(formData);
+
+      if (result.success) {
+        console.log('상담 신청 완료:', result.request_number);
+        // 성공 화면으로 이동
+        onNext();
+      } else {
+        // 실패 시 경고
+        Alert.alert(
+          '신청 실패',
+          result.message || '상담 신청에 실패했습니다. 다시 시도해주세요.',
+          [
+            {
+              text: '확인',
+              onPress: () => setIsSubmitting(false),
+            },
+          ]
+        );
+      }
+    } catch (error) {
+      console.error('상담 신청 오류:', error);
+      Alert.alert(
+        '오류',
+        '상담 신청 중 오류가 발생했습니다.',
+        [
+          {
+            text: '확인',
+            onPress: () => setIsSubmitting(false),
+          },
+        ]
+      );
+    }
   };
 
   return (

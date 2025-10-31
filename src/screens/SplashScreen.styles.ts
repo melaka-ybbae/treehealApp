@@ -46,4 +46,7 @@ export const styles = StyleSheet.create({
     color: '#22c55e', // Tailwind green-500
     textAlign: 'center',
   },
+  buttonDisabled: {
+    opacity: 0.6,
+  },
 });
