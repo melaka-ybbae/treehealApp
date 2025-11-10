@@ -4,6 +4,7 @@ import { useInsurance } from '../context/InsuranceContext';
 import { styles } from './ConsultantSelectionScreen.styles';
 import { getActiveExperts, Expert } from '../services/expertService';
 import { getDeviceSSAID } from '../utils/deviceUtils';
+import { UserIcon } from '../components/Icons';
 
 interface ConsultantSelectionScreenProps {
   onNext: (skipDetail?: boolean) => void;
@@ -75,22 +76,32 @@ export default function ConsultantSelectionScreen({ onNext }: ConsultantSelectio
       <Text style={styles.title}>전문가를 선택해주세요.</Text>
       <View style={styles.grid}>
         {experts.map((expert) => (
-          <TouchableOpacity
+          <View
             key={expert.expert_id}
-            onPress={() => handleSelect(expert.expert_id)}
-            style={styles.card}
+            style={[
+              styles.card,
+              formData.consultant === expert.expert_id && styles.cardSelected,
+            ]}
           >
-            <Image
-              source={{ uri: expert.profile_image }}
-              style={[
-                styles.image,
-                formData.consultant === expert.expert_id && styles.imageSelected,
-              ]}
-            />
-            <View style={styles.nameTag}>
-              <Text style={styles.nameText}>{expert.expert_name}</Text>
-            </View>
-          </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => handleSelect(expert.expert_id)}
+              style={styles.cardTouchable}
+            >
+              {expert.profile_image ? (
+                <Image
+                  source={{ uri: expert.profile_image }}
+                  style={styles.image}
+                />
+              ) : (
+                <View style={styles.imagePlaceholder}>
+                  <UserIcon size={100} color='#FFFFFF'></UserIcon>
+                </View>
+              )}
+              <View style={styles.nameTag}>
+                <Text style={styles.nameText}>{expert.expert_name} 전문가</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
         ))}
       </View>
     </ScrollView>

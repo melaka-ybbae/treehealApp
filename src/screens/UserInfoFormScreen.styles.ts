@@ -8,26 +8,32 @@ export const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
     padding: 60,
+    alignItems: 'center',
+  },
+  titleContainer: {
+    padding:60
   },
   title: {
-    fontSize: 56,
-    fontWeight: 'bold',
-    marginBottom: 20,
+    fontSize: 64,
+    fontWeight: 'regular',
+    letterSpacing: 0,
   },
   formGroup: {
     marginBottom: 50,
+    width: 900,
   },
   formRow: {
     flexDirection: 'row',
     gap: 30,
-    marginBottom: 50, // 연락처와의 간격
+    marginBottom: 50,
+    width: 900,
   },
   formGroupHalf: {
     flex: 1,
   },
   label: {
-    fontSize: 36,
-    color: '#6B7280',
+    fontSize: 28,
+    color: '#000000ff',
     marginBottom: 20,
   },
   input: {
@@ -94,7 +100,7 @@ export const styles = StyleSheet.create({
   button: {
     backgroundColor: '#4CAF50',
     paddingVertical: 40,
-    borderRadius: 24,
+    borderRadius: 500,
     alignItems: 'center',
   },
   buttonDisabled: {
@@ -103,6 +109,5 @@ export const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontSize: 40,
-    fontWeight: '600',
   },
 });

@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView, TextInput } from 'react-native';
-import { KOREAN_REGIONS } from '../utils/constants';
 import { useInsurance } from '../context/InsuranceContext';
 import { styles } from './UserInfoFormScreen.styles';
 import { formatPhoneNumber, formatBirthDate, isValidPhoneNumber, isValidBirthDate } from '../utils/formatters';
@@ -18,23 +17,28 @@ export default function UserInfoFormScreen({ onNext }: UserInfoFormScreenProps) 
     isValidBirthDate(formData.birthdate) &&
     formData.gender &&
     formData.phone &&
-    isValidPhoneNumber(formData.phone) &&
-    formData.region;
+    isValidPhoneNumber(formData.phone);
 
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        <Text style={styles.title}>마지막으로 고객님</Text>
-        <Text style={styles.title}>정보를 입력해주세요.</Text>
-
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>마지막으로</Text>
+        <Text style={styles.title}>고객님 정보를 입력해주세요.</Text>
+      </View>
+      <View style={styles.scrollView}>
         <View style={styles.formGroup}>
-          <Text style={styles.label}>이름</Text>
+          <Text style={styles.label}>휴대전화번호</Text>
           <TextInput
             style={styles.input}
-            value={formData.name || ''}
-            onChangeText={(text) => updateFormData({ name: text })}
-            placeholder="홍길동"
+            value={formData.phone || ''}
+            onChangeText={(text) => {
+              const formatted = formatPhoneNumber(text);
+              updateFormData({ phone: formatted });
+            }}
+            placeholder="010-1234-5678"
             placeholderTextColor="#999"
+            keyboardType="phone-pad"
+            maxLength={13}
           />
         </View>
 
@@ -94,65 +98,16 @@ export default function UserInfoFormScreen({ onNext }: UserInfoFormScreenProps) 
         </View>
 
         <View style={styles.formGroup}>
-          <Text style={styles.label}>연락처</Text>
+          <Text style={styles.label}>성함</Text>
           <TextInput
             style={styles.input}
-            value={formData.phone || ''}
-            onChangeText={(text) => {
-              const formatted = formatPhoneNumber(text);
-              updateFormData({ phone: formatted });
-            }}
-            placeholder="010-1234-5678"
+            value={formData.name || ''}
+            onChangeText={(text) => updateFormData({ name: text })}
+            placeholder="홍길동"
             placeholderTextColor="#999"
-            keyboardType="phone-pad"
-            maxLength={13}
           />
         </View>
-
-        <View style={styles.formGroup}>
-          <Text style={styles.label}>거주 지역</Text>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            style={styles.regionScroll}
-          >
-            {KOREAN_REGIONS.map((region) => (
-              <TouchableOpacity
-                key={region}
-                style={[
-                  styles.regionChip,
-                  formData.region === region && styles.regionChipSelected,
-                ]}
-                onPress={() => updateFormData({ region })}
-              >
-                <Text
-                  style={[
-                    styles.regionChipText,
-                    formData.region === region && styles.regionChipTextSelected,
-                  ]}
-                >
-                  {region}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        </View>
-
-        {formData.region && (
-          <View style={styles.formGroup}>
-            <Text style={styles.label}>상세 지역</Text>
-            <TextInput
-              style={styles.input}
-              value={formData.detailedRegion || ''}
-              onChangeText={(text) => updateFormData({ detailedRegion: text })}
-              placeholder="예: 성남시, 강남구 등"
-              placeholderTextColor="#999"
-            />
-          </View>
-        )}
-
-        <View style={{ height: 200 }} />
-      </ScrollView>
+      </View>
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity
@@ -160,7 +115,7 @@ export default function UserInfoFormScreen({ onNext }: UserInfoFormScreenProps) 
           onPress={onNext}
           disabled={!isValid}
         >
-          <Text style={styles.buttonText}>정보입력 완료</Text>
+          <Text style={styles.buttonText}>상담 신청 완료</Text>
         </TouchableOpacity>
       </View>
     </View>

@@ -30,8 +30,14 @@ export default function ConsultationTypeScreen({ onNext }: ConsultationTypeScree
     }
   };
 
-  const handleSelect = (categoryId: number) => {
-    updateFormData({ consultationType: categoryId });
+  const handleSelect = (categoryId: number, categoryName: string) => {
+    // 무료상담 선택 시 전문가를 null로 초기화
+    const isFreeConsultation = categoryName.includes('무료');
+    updateFormData({
+      consultationType: categoryId,
+      consultationTypeName: categoryName,
+      consultant: isFreeConsultation ? null : formData.consultant,
+    });
   };
 
   const isValid = formData.consultationType !== '' && formData.consultationType !== 0;
@@ -75,7 +81,7 @@ export default function ConsultationTypeScreen({ onNext }: ConsultationTypeScree
         {categories.map((category) => (
           <TouchableOpacity
             key={category.category_id}
-            onPress={() => handleSelect(category.category_id)}
+            onPress={() => handleSelect(category.category_id, category.category_name)}
             style={[
               styles.optionCard,
               formData.consultationType === category.category_id && styles.optionCardSelected,

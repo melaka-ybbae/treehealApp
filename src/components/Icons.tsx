@@ -49,6 +49,37 @@ export const CheckIcon: React.FC<IconProps> = ({ size = 24, color = '#000' }) =>
   </View>
 );
 
+export const UserIcon: React.FC<IconProps> = ({ size = 24, color = '#D1D5DB' }) => (
+  <View style={[styles.iconContainer, { width: size, height: size }]}>
+    <View style={{
+      width: size,
+      height: size,
+      borderRadius: size / 2,
+      backgroundColor: color,
+      overflow: 'hidden',
+      alignItems: 'center',
+      paddingTop: size * 0.25,
+    }}>
+      {/* Head */}
+      <View style={{
+        width: size * 0.5,
+        height: size * 0.5,
+        borderRadius: size * 0.5,
+        marginTop: -size * 0.1,
+        backgroundColor: '#CFE0F3',
+      }} />
+      {/* Shoulders */}
+      <View style={{
+        width: size * 0.75,
+        height: size * 0.55,
+        borderRadius: size * 0.375,
+        backgroundColor: '#CFE0F3',
+        marginTop: size * 0.03,
+      }} />
+    </View>
+  </View>
+);
+
 const iconMap = {
   heart: HeartIcon,
   shield: ShieldIcon,

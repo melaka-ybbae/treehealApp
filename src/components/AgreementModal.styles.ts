@@ -29,6 +29,17 @@ export const styles = StyleSheet.create({
   list: {
     marginBottom: 50,
   },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 100,
+  },
+  loadingText: {
+    marginTop: 30,
+    fontSize: 32,
+    color: '#6B7280',
+  },
   itemAll: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -36,10 +47,28 @@ export const styles = StyleSheet.create({
     backgroundColor: '#F9FAFB',
     borderRadius: 24,
   },
+  itemRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
   item: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 30,
+    flex: 1,
+  },
+  viewButton: {
+    paddingHorizontal: 30,
+    paddingVertical: 20,
+    backgroundColor: '#F3F4F6',
+    borderRadius: 16,
+    marginRight: 30,
+  },
+  viewButtonText: {
+    fontSize: 28,
+    fontWeight: '500',
+    color: '#4B5563',
   },
   divider: {
     height: 2,

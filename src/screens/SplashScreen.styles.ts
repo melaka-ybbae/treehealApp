@@ -21,32 +21,14 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 60,
   },
-  logoImage: {
-    width: 640, // 피그마 max-w-[320px]를 DID 기준으로 확대
-    height: 640, // 비율 유지
+  logoTreeImage: {
+    width: 264,
+    height: 264,
+    // marginBottom: -40, // 간격을 최대한 줄이기 위해 음수 마진
   },
-  button: {
-    position: 'absolute',
-    bottom: 60,
-    left: 40,
-    right: 40,
-    backgroundColor: '#fff',
-    paddingVertical: 40,
-    borderRadius: 24,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.3,
-    shadowRadius: 12,
-    elevation: 10,
-  },
-  buttonText: {
-    fontSize: 44,
-    fontWeight: '600',
-    color: '#22c55e', // Tailwind green-500
-    textAlign: 'center',
-  },
-  buttonDisabled: {
-    opacity: 0.6,
+  logoTextImage: {
+    width: 368,
+    height: 200,
+    // marginTop: -40, // 나무 이미지와 겹치도록
   },
 });

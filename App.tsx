@@ -5,13 +5,42 @@
  * @format
  */
 
-import React from 'react';
-import { StatusBar } from 'react-native';
+import React, { useEffect } from 'react';
+import { StatusBar, Text, TextInput } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { useFonts } from 'expo-font';
 import { InsuranceProvider } from './src/context/InsuranceContext';
 import InsuranceNavigator from './src/navigation/InsuranceNavigator';
+import { logScalingInfo } from './src/utils/scaling';
 
 function App() {
+  const [fontsLoaded] = useFonts({
+    'MinSans': require('./assets/fonts/MinSansVF.ttf'),
+  });
+
+  useEffect(() => {
+    // 앱 시작 시 스케일링 정보 출력
+    logScalingInfo();
+
+    // Set default font family for all Text components after fonts are loaded
+    if (Text.defaultProps == null) {
+      Text.defaultProps = {};
+      Text.defaultProps.style = {};
+    }
+    Text.defaultProps.style = { fontFamily: 'MinSansVF' };
+
+    // Set default font family for all TextInput components
+    if (TextInput.defaultProps == null) {
+      TextInput.defaultProps = {};
+      TextInput.defaultProps.style = {};
+    }
+    TextInput.defaultProps.style = { fontFamily: 'MinSansVF' };
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null; // 폰트 로딩 중
+  }
+
   return (
     <SafeAreaProvider>
       <InsuranceProvider>

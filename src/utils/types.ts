@@ -14,15 +14,16 @@ export interface RealtimeApplication {
 }
 
 export interface FormData {
-  consultationType: string;
+  consultationType: number | string; // category_id (number) or legacy string ID
+  consultationTypeName?: string; // 상담 구분 이름 (예: "보험보상상담")
   interests: string[];
   consultant: number | null;
   name: string;
   birthdate: string;
   gender: string;
   phone: string;
-  region: string;
-  detailedRegion: string;
+  region?: string; // 선택사항 (사용하지 않음)
+  detailedRegion?: string; // 선택사항 (사용하지 않음)
   agreements: {
     all: boolean;
     privacy: boolean;

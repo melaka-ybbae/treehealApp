@@ -10,31 +10,32 @@ export const styles = StyleSheet.create({
     padding: 60,
   },
   title: {
-    fontSize: 56,
-    fontWeight: 'bold',
-    marginBottom: 20,
+    fontSize: 64,
+    fontWeight: 'regular',
+    letterSpacing: 0,
+    marginBottom: 92
   },
   section: {
-    marginBottom: 50,
+    marginBottom: 48,
   },
   label: {
-    fontSize: 30,
-    color: '#6B7280',
+    fontSize: 28,
+    color: '#000000ff',
     marginBottom: 20,
   },
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: '#19CD720D',
     borderWidth: 3,
-    borderColor: '#F3F4F6',
-    borderRadius: 32,
-    padding: 50,
+    borderColor: '#19CD72',
+    borderRadius: 30,
+    padding: 20,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    overflow: 'hidden'
   },
   text: {
-    fontSize: 40,
-    fontWeight: '600',
+    fontSize: 36,
     color: '#111827',
     flex: 1,
   },
@@ -57,14 +58,12 @@ export const styles = StyleSheet.create({
   },
   buttonContainer: {
     padding: 60,
-    borderTopWidth: 2,
-    borderTopColor: '#E5E7EB',
     backgroundColor: '#fff',
   },
   button: {
     backgroundColor: '#4CAF50',
     paddingVertical: 40,
-    borderRadius: 24,
+    borderRadius: 500,
     alignItems: 'center',
   },
   buttonText: {

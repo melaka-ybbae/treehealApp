@@ -24,18 +24,25 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   title: {
-    fontSize: 56,
-    fontWeight: 'bold',
-    marginBottom: 20,
+    fontSize: 77,
+    fontWeight: 'regular',
+    letterSpacing: 0
+  },
+  tip: {
+    fontSize: 32,
+    color: '#19CD72',
+    marginTop: 45,
+    marginBottom: 184
   },
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 40,
-    marginTop: 80,
+    gap: 70,
+    justifyContent: 'center'
   },
   card: {
-    width: (width - 160) / 2,
+    width: 400,
+    height: 400,
     padding: 60,
     borderWidth: 4,
     borderColor: '#E5E7EB',
@@ -68,14 +75,11 @@ export const styles = StyleSheet.create({
     left: 0,
     right: 0,
     padding: 60,
-    borderTopWidth: 2,
-    borderTopColor: '#E5E7EB',
-    backgroundColor: '#fff',
   },
   button: {
     backgroundColor: '#4CAF50',
     paddingVertical: 40,
-    borderRadius: 24,
+    borderRadius: 500,
     alignItems: 'center',
   },
   buttonDisabled: {

@@ -76,7 +76,8 @@ export default function InterestsScreen({ onNext }: InterestsScreenProps) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>상담 받고 싶은</Text>
-      <Text style={styles.title}>분야를 모두 선택해주세요.</Text>
+      <Text style={styles.title}>세부 항목을 선택해주세요.</Text>
+      <Text style={styles.tip}>중복 선택이 가능해요 :)</Text>
       <View style={styles.grid}>
         {detailItems.map((item) => (
           <TouchableOpacity

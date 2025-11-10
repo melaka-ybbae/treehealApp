@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, ActivityIndicator, Alert } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { View, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './SplashScreen.styles';
 import { initializeDeviceRegistration } from '../services/deviceService';
@@ -9,46 +9,60 @@ interface SplashScreenProps {
 }
 
 export default function SplashScreen({ onNext }: SplashScreenProps) {
-  const [isLoading, setIsLoading] = useState(false);
+  const logoOpacity = useRef(new Animated.Value(0)).current; // 로고 투명도
+  const textOpacity = useRef(new Animated.Value(0)).current; // 글씨 투명도
+  const screenOpacity = useRef(new Animated.Value(1)).current; // 전체 화면 투명도
 
-  const handleStart = async () => {
-    setIsLoading(true);
+  useEffect(() => {
+    // 컴포넌트 마운트 시 애니메이션 시작
+    startAnimationSequence();
+  }, []);
 
+  const startAnimationSequence = async () => {
+    // 1. 로고 페이드인 (0.5초 대기 후 0.6초 동안)
+    await new Promise<void>(resolve => setTimeout(() => resolve(), 700));
+    Animated.timing(logoOpacity, {
+      toValue: 1,
+      duration: 600,
+      useNativeDriver: true,
+    }).start();
+
+    // 2. 글씨 페이드인 (로고 시작 후 0.3초 대기 후 0.6초 동안)
+    await new Promise<void>(resolve => setTimeout(() => resolve(), 500));
+    Animated.timing(textOpacity, {
+      toValue: 1,
+      duration: 600,
+      useNativeDriver: true,
+    }).start();
+
+    // 3. 기기 등록 처리
     try {
-      // 기기 등록 및 인증
       const success = await initializeDeviceRegistration();
-
       if (success) {
         console.log('기기 등록 완료, 다음 화면으로 이동');
-        onNext();
       } else {
-        // 등록 실패 시 경고 표시 (선택사항)
-        Alert.alert(
-          '알림',
-          '기기 등록에 실패했습니다. 계속 진행하시겠습니까?',
-          [
-            {
-              text: '취소',
-              style: 'cancel',
-            },
-            {
-              text: '계속',
-              onPress: () => onNext(),
-            },
-          ]
-        );
+        console.log('기기 등록 실패, 계속 진행');
       }
     } catch (error) {
       console.error('기기 등록 중 오류:', error);
-      // 오류 발생 시에도 앱 사용 가능하도록 처리
-      onNext();
-    } finally {
-      setIsLoading(false);
     }
+
+    // 4. 최소 2초 표시 후 페이드아웃
+    await new Promise<void>(resolve => setTimeout(() => resolve(), 1000));
+
+    // 5. 전체 화면 페이드아웃 (0.5초)
+    Animated.timing(screenOpacity, {
+      toValue: 0,
+      duration: 500,
+      useNativeDriver: true,
+    }).start(() => {
+      // 애니메이션 완료 후 다음 화면으로 이동
+      onNext();
+    });
   };
 
   return (
-    <View style={styles.container}>
+    <Animated.View style={[styles.container, { opacity: screenOpacity }]}>
       {/* Gradient Background - from-green-400 to-green-500 */}
       <LinearGradient
         colors={['#4ade80', '#22c55e']} // Tailwind green-400 to green-500
@@ -59,25 +73,18 @@ export default function SplashScreen({ onNext }: SplashScreenProps) {
 
       {/* Logo Content */}
       <View style={styles.content}>
-        <Image
-          source={require('../../assets/logo.png')}
-          style={styles.logoImage}
-          resizeMode="stretch"
+        <Animated.Image
+          source={require('../../assets/logo_tree.svg')}
+          style={[styles.logoTreeImage, { opacity: logoOpacity }]}
+          resizeMode="contain"
+        />
+
+        <Animated.Image
+          source={require('../../assets/logo_text.svg')}
+          style={[styles.logoTextImage, { opacity: textOpacity }]}
+          resizeMode="contain"
         />
       </View>
-
-      {/* Bottom Button */}
-      <TouchableOpacity
-        style={[styles.button, isLoading && styles.buttonDisabled]}
-        onPress={handleStart}
-        disabled={isLoading}
-      >
-        {isLoading ? (
-          <ActivityIndicator size="large" color="#fff" />
-        ) : (
-          <Text style={styles.buttonText}>시작하기</Text>
-        )}
-      </TouchableOpacity>
-    </View>
+    </Animated.View>
   );
 }

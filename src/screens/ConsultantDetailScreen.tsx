@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Image, ActivityIndicator, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ActivityIndicator, Alert } from 'react-native';
 import { useInsurance } from '../context/InsuranceContext';
 import { getExpertById, Expert } from '../services/expertService';
 import { styles } from './ConsultantDetailScreen.styles';
@@ -71,7 +71,7 @@ export default function ConsultantDetailScreen({ onNext, onBack }: ConsultantDet
     : [];
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <View style={styles.container}>
       <View style={styles.content}>
         <Image
           source={{ uri: expert.profile_image }}
@@ -80,14 +80,20 @@ export default function ConsultantDetailScreen({ onNext, onBack }: ConsultantDet
         <Text style={styles.name}>{expert.expert_name} 전문가</Text>
 
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>전문 분야</Text>
+          <View style={styles.sectionTitleContainer}>
+            <View style={styles.dashedLine} />
+            <Text style={styles.sectionTitle}>약력</Text>
+            <View style={styles.dashedLine} />
+          </View>
           <Text style={styles.sectionText}>{expert.specialization}</Text>
         </View>
 
-        <View style={styles.divider} />
-
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>자격내용</Text>
+          <View style={styles.sectionTitleContainer}>
+            <View style={styles.dashedLine} />
+            <Text style={styles.sectionTitle}>자격내용</Text>
+            <View style={styles.dashedLine} />
+          </View>
           {qualificationsList.map((qual, idx) => (
             <View key={idx} style={styles.expItem}>
               <View style={styles.bullet} />
@@ -95,12 +101,9 @@ export default function ConsultantDetailScreen({ onNext, onBack }: ConsultantDet
             </View>
           ))}
         </View>
+      </View>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>연락처</Text>
-          <Text style={styles.sectionText}>{expert.contact_number}</Text>
-        </View>
-
+      <View style={styles.buttonContainer}>
         <View style={styles.buttons}>
           <TouchableOpacity style={styles.buttonSecondary} onPress={onBack}>
             <Text style={styles.buttonSecondaryText}>다른 전문가 선택</Text>
@@ -110,6 +113,6 @@ export default function ConsultantDetailScreen({ onNext, onBack }: ConsultantDet
           </TouchableOpacity>
         </View>
       </View>
-    </ScrollView>
+    </View>
   );
 }

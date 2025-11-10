@@ -22,9 +22,9 @@ export const styles = StyleSheet.create({
     marginBottom: 60,
   },
   title: {
-    fontSize: 60,
-    fontWeight: 'bold',
-    marginBottom: 40,
+    fontSize: 77,
+    fontWeight: 'regular',
+    letterSpacing: 0,
   },
   text: {
     fontSize: 40,
@@ -53,7 +53,7 @@ export const styles = StyleSheet.create({
   button: {
     backgroundColor: '#4CAF50',
     paddingVertical: 40,
-    borderRadius: 24,
+    borderRadius: 500,
     alignItems: 'center',
   },
   buttonText: {

@@ -341,9 +341,60 @@ Content-Type: application/json
 
 ---
 
+## 약관 동의 API
+
+### 8. 약관 목록 조회 (GET)
+
+**엔드포인트**: `GET /api/consent-items`
+
+**설명**: 활성화된 약관(개인정보 동의) 항목 목록을 조회합니다.
+
+**성공 응답** (200 OK):
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "consent_item_id": 1,
+      "item_title": "개인정보 수집 및 이용 동의",
+      "item_content": "TreeHeal은 보험 상담 서비스 제공을 위해 다음과 같이 개인정보를 수집 및 이용합니다.\n\n1. 수집 항목: 이름, 생년월일, 성별, 연락처\n2. 수집 목적: 보험 상담 서비스 제공 및 상담사 배정\n3. 보유 기간: 상담 완료 후 3년\n\n위 내용에 동의하십니까?",
+      "is_required": true,
+      "display_order": 1,
+      "is_active": true
+    },
+    {
+      "consent_item_id": 2,
+      "item_title": "제3자 정보 제공 동의",
+      "item_content": "TreeHeal은 보험 상담을 위해 고객님의 정보를 다음과 같이 제3자에게 제공합니다.\n\n1. 제공받는 자: 배정된 보험 상담사\n2. 제공 항목: 이름, 연락처, 상담 희망 내역\n3. 이용 목적: 보험 상담 서비스 제공\n4. 보유 기간: 상담 완료 후 1년\n\n위 내용에 동의하십니까?",
+      "is_required": true,
+      "display_order": 2,
+      "is_active": true
+    },
+    {
+      "consent_item_id": 3,
+      "item_title": "마케팅 정보 수신 동의",
+      "item_content": "TreeHeal은 새로운 보험 상품 및 이벤트 정보를 SMS, 이메일 등으로 제공하고자 합니다.\n\n1. 수신 방법: SMS, 이메일, 앱 푸시\n2. 발송 내용: 신규 보험 상품 안내, 이벤트 소식\n3. 수신 철회: 언제든지 수신 거부 가능\n\n위 내용에 동의하십니까?",
+      "is_required": false,
+      "display_order": 3,
+      "is_active": true
+    }
+  ]
+}
+```
+
+**에러 응답** (500 Internal Server Error):
+```json
+{
+  "success": false,
+  "message": "서버 오류가 발생했습니다"
+}
+```
+
+---
+
 ## 상담 신청 API
 
-### 8. 상담 신청 (POST)
+### 9. 상담 신청 (POST)
 
 **엔드포인트**: `POST /api/consultations`
 
@@ -426,7 +477,7 @@ Content-Type: application/json
 
 ---
 
-### 9. 상담 신청 조회 (GET)
+### 10. 상담 신청 조회 (GET)
 
 **엔드포인트**: `GET /api/consultations/:requestNumber`
 
@@ -752,6 +803,30 @@ router.get('/detail-items', async (req, res) => {
 
   } catch (error) {
     console.error('Get detail items error:', error);
+    return res.status(500).json({
+      success: false,
+      message: '서버 오류가 발생했습니다'
+    });
+  }
+});
+
+// 약관 목록 조회 API
+router.get('/consent-items', async (req, res) => {
+  try {
+    const [items] = await pool.query(
+      `SELECT consent_item_id, item_title, item_content, is_required, display_order, is_active
+       FROM privacy_consent_items
+       WHERE is_active = TRUE
+       ORDER BY display_order ASC, consent_item_id ASC`
+    );
+
+    return res.status(200).json({
+      success: true,
+      data: items
+    });
+
+  } catch (error) {
+    console.error('Get consent items error:', error);
     return res.status(500).json({
       success: false,
       message: '서버 오류가 발생했습니다'

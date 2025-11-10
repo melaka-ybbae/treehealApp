@@ -1,138 +1,147 @@
-import { StyleSheet, Dimensions } from 'react-native';
-
-const { height } = Dimensions.get('window');
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+  // Container
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#19CD72',
   },
-  // Top Image Section - h-[55vh] ~ h-[60vh]
-  imageContainer: {
-    height: height * 0.65, // 65vh - 동영상 영역 확대
-    width: '100%',
-    position: 'relative',
-    overflow: 'hidden',
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-  },
-  imageGradient: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-  },
-  // Bottom Section - rounded-t-3xl shadow-xl
   content: {
     flex: 1,
-    backgroundColor: '#fff',
-    borderTopLeftRadius: 48, // rounded-t-3xl
-    borderTopRightRadius: 48,
-    marginTop: -60, // -mt-6 sm:-mt-8 확대
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: -4 },
-    shadowOpacity: 0.25,
-    shadowRadius: 12,
-    elevation: 10,
-    position: 'relative',
-    zIndex: 10,
+    paddingTop: 27,
   },
-  contentInner: {
-    padding: 40, // 60 → 40 (패딩 축소)
-    flex: 1,
-    flexDirection: 'column',
+
+  // Table Card
+  tableCard: {
+    width: 1000,
+    backgroundColor: 'white',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    overflow: 'hidden',
+    marginHorizontal: 40,
   },
-  title: {
-    fontSize: 32, // 38 → 32 (폰트 축소)
+
+  // Card Title (카드 내부 상단)
+  cardTitle: {
+    fontSize: 34,
     fontWeight: '400',
     textAlign: 'center',
-    marginBottom: 30, // 50 → 30 (여백 축소)
+    color: '#19CD72',
+    paddingTop: 20,
+    paddingBottom: 20,
   },
-  tableContainer: {
-    flex: 1,
-    marginBottom: 30, // 50 → 30 (여백 축소)
-  },
-  table: {
-    borderWidth: 2,
-    borderColor: '#E5E7EB', // border-gray-200
-    borderRadius: 24, // rounded-xl
-    overflow: 'hidden',
-  },
-  tableHeader: {
+
+  // Table Header
+  tableHeaderRow: {
     flexDirection: 'row',
-    backgroundColor: '#F0FDF4', // bg-green-50
-    paddingVertical: 20, // 30 → 20 (패딩 축소)
-    paddingHorizontal: 20, // 30 → 20 (패딩 축소)
-  },
-  tableHeaderText: {
-    fontSize: 24, // 28 → 24 (폰트 축소)
-    fontWeight: '600',
-    color: '#15803d', // text-green-700
-  },
-  tableRow: {
-    flexDirection: 'row',
-    borderTopWidth: 1,
-    borderTopColor: '#F3F4F6', // border-gray-100
-    paddingVertical: 10, // 28 → 18 (패딩 축소)
-    paddingHorizontal: 20, // 30 → 20 (패딩 축소)
+    height: 50,
+    backgroundColor: 'rgba(25, 205, 114, 0.1)',
     alignItems: 'center',
+    paddingHorizontal: 20,
   },
-  tableCell: {
-    fontSize: 22, // 26 → 22 (폰트 축소)
-    color: '#4B5563', // text-gray-600, text-gray-900
+  tableHeaderCell: {
+    fontSize: 28,
+    fontWeight: '400',
+    color: '#19CD72',
+    textAlign: 'center',
   },
-  tableCol1: {
-    flex: 2,
-    paddingRight: 10,
+
+  // Table Data Row
+  tableDataRow: {
+    flexDirection: 'row',
+    paddingVertical: 5,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    minHeight: 45,
   },
-  tableCol2: {
+  tableDataCell: {
+    fontSize: 28,
+    fontWeight: '400',
+    color: 'black',
+    textAlign: 'center',
+    lineHeight: 40,
+  },
+
+  // Status Container (상태 + 회색 박스를 담는 컨테이너)
+  statusContainer: {
     flex: 3,
-    paddingHorizontal: 10,
-  },
-  tableCol3: {
-    flex: 2,
-    paddingHorizontal: 10,
-  },
-  tableCol4: {
-    flex: 2,
-    paddingLeft: 10,
+    flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
   },
-  statusBadge: {
-    paddingHorizontal: 24, // px-2 sm:px-3 확대
-    paddingVertical: 10, // py-0.5 sm:py-1 확대
-    borderRadius: 20, // rounded-full
-    minWidth: 120, // min-w-[52px] sm:min-w-[60px] 확대
+
+  // Gray Box (4, 5번째 행 가운데)
+  grayBox: {
+    width: 159,
+    height: 36,
+    backgroundColor: '#D9D9D9',
+  },
+
+  // Column widths
+  col1: {
+    flex: 2, // 날짜
+  },
+  col2: {
+    flex: 3, // 지역
+  },
+  col3: {
+    flex: 2, // 이름
+  },
+  col4: {
+    flex: 3, // 보험금 접수현황
+  },
+
+  // CTA Button
+  ctaButton: {
+    width: 1000,
+    height: 81,
+    backgroundColor: 'black',
+    borderWidth: 3,
+    borderColor: '#19CD72',
+    justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 0,
+    marginBottom: -60,
+    marginHorizontal: 40,
+    zIndex: 10, // 동영상 위에 표시
+    elevation: 10, // Android에서도 위에 표시
   },
-  statusBadgeBlue: {
-    backgroundColor: '#DBEAFE', // bg-blue-100
+  ctaButtonText: {
+    fontSize: 47,
+    fontWeight: '400',
+    color: '#19CD72',
+    textAlign: 'center',
   },
-  statusBadgeYellow: {
-    backgroundColor: '#FEF3C7', // bg-yellow-100
+
+  // Video Section (버튼과 푸터 사이 꽉 차게, 좌우 패딩 없음)
+  videoContainer: {
+    width: '100%', // 전체 너비
+    marginTop: 20,
+    flex: 1, // 남은 공간 모두 차지
+    minHeight: 400, // 최소 높이 설정
   },
-  statusBadgeGreen: {
-    backgroundColor: '#D1FAE5', // bg-green-100
-  },
-  statusText: {
-    fontSize: 24, // text-[9px] sm:text-xs 확대
-    fontWeight: '500',
-    color: '#000',
-  },
-  primaryButton: {
+  videoPlaceholder: {
     width: '100%',
-    paddingVertical: 30, // 40 → 30 (패딩 축소)
-    backgroundColor: '#000', // bg-black
-    borderRadius: 24, // rounded-xl
+    height: '100%', // 컨테이너 높이 꽉 채우기
+    backgroundColor: '#D9D9D9',
+  },
+
+  // Bottom Contact - Fixed at bottom
+  bottomContact: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    width: 1080,
+    height: 60,
+    backgroundColor: '#19CD72',
+    justifyContent: 'center',
     alignItems: 'center',
   },
-  primaryButtonText: {
-    color: '#fff',
-    fontSize: 32, // 36 → 32 (폰트 축소)
-    fontWeight: '600',
+  contactText: {
+    fontSize: 28,
+    fontWeight: '400',
+    color: 'white',
     textAlign: 'center',
   },
 });

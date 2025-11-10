@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ChevronLeftIcon } from '../components/Icons';
+import { useInsurance } from '../context/InsuranceContext';
 
 import SplashScreen from '../screens/SplashScreen';
 import RealtimeApplicationsScreen from '../screens/RealtimeApplicationsScreen';
@@ -26,6 +27,8 @@ type StepType =
 
 export default function InsuranceNavigator() {
   const [currentStep, setCurrentStep] = useState<StepType>('splash');
+  const [hasShownSplash, setHasShownSplash] = useState(false);
+  const { formData } = useInsurance();
 
   const handleNext = (skipDetail?: boolean) => {
     const steps: StepType[] = [
@@ -41,10 +44,25 @@ export default function InsuranceNavigator() {
     ];
     const currentIndex = steps.indexOf(currentStep);
 
+    // splash 화면에서 다음으로 가면 hasShownSplash를 true로 설정
+    if (currentStep === 'splash') {
+      setHasShownSplash(true);
+    }
+
     // consultant 화면에서 skipDetail이 true면 consultantDetail 건너뛰기
     if (currentStep === 'consultant' && skipDetail) {
       setCurrentStep('userInfo');
       return;
+    }
+
+    // 무료 보험 상담 선택 시 전문가 선택 단계 스킵
+    // interests 단계에서 다음으로 갈 때 무료상담이면 consultant/consultantDetail 건너뛰기
+    if (currentStep === 'interests') {
+      const isFreeConsultation = formData.consultationTypeName?.includes('무료');
+      if (isFreeConsultation) {
+        setCurrentStep('userInfo');
+        return;
+      }
     }
 
     if (currentIndex < steps.length - 1) {
@@ -65,6 +83,16 @@ export default function InsuranceNavigator() {
       'confirmation',
     ];
     const currentIndex = steps.indexOf(currentStep);
+
+    // userInfo에서 뒤로가기 시 무료상담이면 interests로, 아니면 이전 단계로
+    if (currentStep === 'userInfo') {
+      const isFreeConsultation = formData.consultationTypeName?.includes('무료');
+      if (isFreeConsultation) {
+        setCurrentStep('interests');
+        return;
+      }
+    }
+
     if (currentIndex > 0) {
       setCurrentStep(steps[currentIndex - 1]);
     }
@@ -74,21 +102,33 @@ export default function InsuranceNavigator() {
   const showProgress = !['splash', 'realtime', 'confirmation'].includes(currentStep);
 
   const getProgressPercent = () => {
-    const progressSteps: StepType[] = [
-      'consultationType',
-      'interests',
-      'consultant',
-      'consultantDetail',
-      'userInfo',
-      'review',
-    ];
+    const isFreeConsultation = formData.consultationTypeName?.includes('무료');
+
+    // 무료상담일 경우 전문가 선택 단계 제외
+    const progressSteps: StepType[] = isFreeConsultation
+      ? [
+          'consultationType',
+          'interests',
+          'userInfo',
+          'review',
+        ]
+      : [
+          'consultationType',
+          'interests',
+          'consultant',
+          'consultantDetail',
+          'userInfo',
+          'review',
+        ];
+
     const index = progressSteps.indexOf(currentStep);
     if (index === -1) return 0;
     return ((index + 1) / progressSteps.length) * 100;
   };
 
   const handleComplete = () => {
-    setCurrentStep('splash');
+    // 완료 후 RealtimeApplicationScreen으로 돌아감
+    setCurrentStep('realtime');
   };
 
   const renderScreen = () => {

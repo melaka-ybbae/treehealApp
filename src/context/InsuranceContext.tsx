@@ -10,7 +10,7 @@ interface InsuranceContextType {
 const InsuranceContext = createContext<InsuranceContextType | undefined>(undefined);
 
 const initialFormData: FormData = {
-  consultationType: '',
+  consultationType: 0,
   interests: [],
   consultant: null,
   name: '',

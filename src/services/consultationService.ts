@@ -2,17 +2,22 @@ import axios from 'axios';
 import { API_BASE_URL, API_CONFIG } from '../config/api';
 import { getDeviceSSAID } from '../utils/deviceUtils';
 
+export interface DetailItem {
+  item_id: number;
+  item_name: string;
+  value: string;
+}
+
 export interface ConsultationRequest {
   ssaid: string;
-  category_id: number;
+  category_id: number | string;
+  consultation_type: string;
   applicant_name: string;
   contact_number: string;
   birth_date: string;
   gender: 'M' | 'F';
   assigned_expert_id?: number;
-  detail_items: string[];
-  region?: string;
-  detailed_region?: string;
+  detail_items?: DetailItem[];
 }
 
 interface ConsultationResponse {
@@ -42,22 +47,31 @@ export const submitConsultation = async (
     // 생년월일 포맷 변환 (YYYY-MM-DD -> YYYY-MM-DD, 그대로 사용)
     const birthDate = formData.birthdate;
 
+    // detail_items 변환: 문자열 배열 -> 객체 배열
+    const detailItems: DetailItem[] | undefined =
+      formData.interests && formData.interests.length > 0
+        ? formData.interests.map((itemName: string, index: number) => ({
+            item_id: index + 1,
+            item_name: itemName,
+            value: itemName, // value는 item_name과 동일하게 설정
+          }))
+        : undefined;
+
     // 요청 데이터 구성
-    // formData.interests는 이제 한글 item_name 배열로 저장됨 (예: ["실손보험", "진단비"])
     const requestData: ConsultationRequest = {
       ssaid: ssaid,
       category_id: formData.consultationType, // 서버에서 받은 category_id 그대로 전송
+      consultation_type: formData.consultationTypeName || '', // 상담 구분 이름
       applicant_name: formData.name,
       contact_number: formData.phone,
       birth_date: birthDate,
       gender: gender,
-      assigned_expert_id: formData.consultant > 0 ? formData.consultant : undefined,
-      detail_items: formData.interests || [], // 한글 item_name 배열 그대로 전송
-      region: formData.region,
-      detailed_region: formData.detailedRegion,
+      assigned_expert_id: formData.consultant && formData.consultant > 0 ? formData.consultant : undefined,
+      detail_items: detailItems,
     };
 
-    console.log('상담 신청 데이터:', requestData);
+    console.log('=== 상담 신청 데이터 ===');
+    console.log('요청 데이터:', JSON.stringify(requestData, null, 2));
 
     // 서버에 상담 신청
     const response = await axios.post<ConsultationResponse>(
@@ -66,11 +80,17 @@ export const submitConsultation = async (
       API_CONFIG
     );
 
+    console.log('서버 응답:', response.data);
     return response.data;
   } catch (error) {
-    console.error('Failed to submit consultation:', error);
+    console.error('=== 상담 신청 실패 ===');
+    console.error('에러 전체:', error);
 
     if (axios.isAxiosError(error)) {
+      console.error('응답 상태:', error.response?.status);
+      console.error('응답 데이터:', error.response?.data);
+      console.error('응답 헤더:', error.response?.headers);
+
       return {
         success: false,
         message: error.response?.data?.message || error.message,
