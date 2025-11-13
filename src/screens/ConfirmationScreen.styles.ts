@@ -39,23 +39,6 @@ export const styles = StyleSheet.create({
     color: '#6B7280',
     marginBottom: scaleSpacing(10),
   },
-  note: {
-    backgroundColor: '#19CD72',
-    borderRadius: scale(24),
-    padding: scale(4),
-    marginTop: scaleSpacing(80),
-    overflow: 'hidden',
-  },
-  noteInner: {
-    flex: 1,
-    backgroundColor: '#F0FDF4',
-    borderRadius: scale(20),
-    padding: scaleSpacing(40),
-  },
-  noteText: {
-    fontSize: scaleFont(36),
-    color: '#19CD72',
-  },
   bold: {
     fontWeight: 'bold',
   },

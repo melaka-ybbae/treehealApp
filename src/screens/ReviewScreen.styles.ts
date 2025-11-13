@@ -32,13 +32,13 @@ export const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   cardInner: {
-    flex: 1,
     backgroundColor: '#FFFFFFF6',
     borderRadius: scale(27),
     padding: scaleSpacing(20),
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    minHeight: scale(120),
   },
   text: {
     fontSize: scaleFont(36),

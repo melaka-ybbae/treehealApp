@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { CheckIcon } from '../components/Icons';
 import { styles } from './ConfirmationScreen.styles';
@@ -8,6 +8,23 @@ interface ConfirmationScreenProps {
 }
 
 export default function ConfirmationScreen({ onComplete }: ConfirmationScreenProps) {
+  const [countdown, setCountdown] = useState(5);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          onComplete();
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [onComplete]);
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -17,20 +34,13 @@ export default function ConfirmationScreen({ onComplete }: ConfirmationScreenPro
           </View>
         </View>
         <Text style={styles.title}>상담 신청 완료</Text>
-        <Text style={styles.text}>전문가가 확인 후</Text>
-        <Text style={styles.text}>빠른 시일 내에 연락드리겠습니다.</Text>
-        <View style={styles.note}>
-          <View style={styles.noteInner}>
-            <Text style={styles.noteText}>
-              📞 평균 <Text style={styles.bold}>1-2일 이내</Text> 연락드립니다
-            </Text>
-          </View>
-        </View>
+        <Text style={styles.text}>전문상담사가 곧 연락드려 상담을 도와드립니다.</Text>
+        <Text style={styles.text}>빠르고 정확한 상담을 위해 잠시만 기다려주세요.</Text>
       </View>
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={onComplete}>
-          <Text style={styles.buttonText}>완료</Text>
+          <Text style={styles.buttonText}>{countdown}초 후 닫힘</Text>
         </TouchableOpacity>
       </View>
     </View>

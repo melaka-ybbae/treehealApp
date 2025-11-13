@@ -18,10 +18,10 @@ export default function ShineText({ children, style }: ShineTextProps) {
       Animated.sequence([
         Animated.timing(shineAnim, {
           toValue: 1,
-          duration: 1500, // 1초 동안 지나감
+          duration: 3000,
           useNativeDriver: true,
         }),
-        Animated.delay(1500), // 2초 대기
+        Animated.delay(1000), // 2초 대기
       ])
     );
 
@@ -33,7 +33,7 @@ export default function ShineText({ children, style }: ShineTextProps) {
   // 좌상단에서 우하단까지 이동 (텍스트 전체 커버)
   const translateX = shineAnim.interpolate({
     inputRange: [-1, 1],
-    outputRange: [-200, 500], // 더 넓은 범위
+    outputRange: [-200, 800], // 더 넓은 범위
   });
 
   return (
@@ -70,9 +70,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: -150,
     left: -100,
-    width: 120, // 더 넓게 (긴 텍스트 커버)
+    width: 100, // 더 넓게 (긴 텍스트 커버)
     height: 400, // 더 길게
-    backgroundColor: 'rgba(255, 255, 255, 0.6)',
-    opacity: 0.8,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    opacity: 1,
   },
 });
