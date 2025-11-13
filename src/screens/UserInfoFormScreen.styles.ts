@@ -1,3 +1,4 @@
+import { scaleFont, scaleSpacing, scale } from "../utils/scaling";
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -7,100 +8,124 @@ export const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
-    padding: 60,
+    padding: scaleSpacing(60),
     alignItems: 'center',
   },
   titleContainer: {
-    padding:60
+    padding: scaleSpacing(60)
   },
   title: {
-    fontSize: 64,
+    fontSize: scaleFont(64),
     fontWeight: 'regular',
     letterSpacing: 0,
   },
   formGroup: {
-    marginBottom: 50,
-    width: 900,
+    marginBottom: scaleSpacing(50),
+    width: scale(900),
   },
   formRow: {
     flexDirection: 'row',
-    gap: 30,
-    marginBottom: 50,
-    width: 900,
+    gap: scale(30),
+    marginBottom: scaleSpacing(50),
+    width: scale(900),
   },
   formGroupHalf: {
     flex: 1,
   },
   label: {
-    fontSize: 28,
+    fontSize: scaleFont(28),
     color: '#000000ff',
-    marginBottom: 20,
+    marginBottom: scaleSpacing(20),
+  },
+  inputWrapper: {
+    borderRadius: scale(24),
+    backgroundColor: '#E5E7EB',
+    padding: scale(4),
+    overflow: 'hidden',
   },
   input: {
-    borderWidth: 3,
-    borderColor: '#E5E7EB',
-    borderRadius: 24,
-    padding: 40,
-    fontSize: 40,
+    borderRadius: scale(20),
+    backgroundColor: '#fff',
+    padding: scaleSpacing(36),
+    fontSize: scaleFont(40),
     color: '#000',
-  },
+    borderWidth: 0,
+    // @ts-ignore - Web specific property
+    outlineStyle: 'none',
+  } as any,
   genderButtons: {
     flexDirection: 'row',
-    gap: 20,
+    gap: scale(20),
   },
   genderButton: {
     flex: 1,
-    paddingVertical: 40,
-    borderWidth: 3,
-    borderColor: '#E5E7EB',
-    borderRadius: 24,
+    borderRadius: scale(24),
+    backgroundColor: '#E5E7EB',
+    padding: scale(4),
+    overflow: 'hidden',
+  },
+  genderButtonInner: {
+    borderRadius: scale(20),
+    backgroundColor: '#fff',
+    paddingVertical: scaleSpacing(36),
     alignItems: 'center',
+    overflow: 'hidden',
   },
   genderButtonSelected: {
-    borderColor: '#4CAF50',
+    backgroundColor: '#19CD72',
+  },
+  genderButtonSelectedInner: {
     backgroundColor: '#F0FDF4',
   },
   genderButtonText: {
-    fontSize: 36,
+    fontSize: scaleFont(36),
     color: '#6B7280',
   },
   genderButtonTextSelected: {
-    color: '#059669',
+    color: '#19CD72',
     fontWeight: '600',
   },
   regionScroll: {
-    marginTop: 20,
+    marginTop: scaleSpacing(20),
   },
   regionChip: {
-    paddingVertical: 25,
-    paddingHorizontal: 40,
-    borderWidth: 2,
-    borderColor: '#E5E7EB',
-    borderRadius: 40,
-    marginRight: 20,
+    borderRadius: scale(40),
+    backgroundColor: '#E5E7EB',
+    padding: scale(4),
+    marginRight: scaleSpacing(20),
+    overflow: 'hidden',
+  },
+  regionChipInner: {
+    borderRadius: scale(36),
+    backgroundColor: '#fff',
+    paddingVertical: scaleSpacing(21),
+    paddingHorizontal: scaleSpacing(36),
+    overflow: 'hidden',
   },
   regionChipSelected: {
-    borderColor: '#4CAF50',
+    backgroundColor: '#19CD72',
+  },
+  regionChipSelectedInner: {
     backgroundColor: '#F0FDF4',
   },
   regionChipText: {
-    fontSize: 32,
+    fontSize: scaleFont(32),
     color: '#6B7280',
   },
   regionChipTextSelected: {
-    color: '#059669',
+    color: '#19CD72',
     fontWeight: '600',
   },
   buttonContainer: {
-    padding: 60,
-    borderTopWidth: 2,
+    padding: scaleSpacing(60),
+    borderTopWidth: scale(2),
     borderTopColor: '#E5E7EB',
     backgroundColor: '#fff',
   },
   button: {
-    backgroundColor: '#4CAF50',
-    paddingVertical: 40,
-    borderRadius: 500,
+    backgroundColor: '#19CD72',
+    paddingVertical: scaleSpacing(40),
+    borderRadius: scale(500),
     alignItems: 'center',
   },
   buttonDisabled: {
@@ -108,6 +133,6 @@ export const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#fff',
-    fontSize: 40,
+    fontSize: scaleFont(40),
   },
 });

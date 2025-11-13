@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, Pressable, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { DynamicIcon } from '../components/Icons';
 import { useInsurance } from '../context/InsuranceContext';
 import { getActiveDetailItems, DetailItem } from '../services/detailItemService';
 import { styles } from './InterestsScreen.styles';
+import { scale } from '../utils/scaling';
 
 interface InterestsScreenProps {
   onNext: () => void;
@@ -80,28 +81,36 @@ export default function InterestsScreen({ onNext }: InterestsScreenProps) {
       <Text style={styles.tip}>중복 선택이 가능해요 :)</Text>
       <View style={styles.grid}>
         {detailItems.map((item) => (
-          <TouchableOpacity
+          <Pressable
             key={item.item_id}
             onPress={() => toggleInterest(item.item_name)}
-            style={[
+            style={({ pressed }) => [
               styles.card,
               isItemSelected(item.item_name) && styles.cardSelected,
+              pressed && styles.cardPressed,
             ]}
           >
             <View
               style={[
-                styles.iconCircle,
-                isItemSelected(item.item_name) && styles.iconCircleSelected,
+                styles.cardInner,
+                isItemSelected(item.item_name) && styles.cardSelectedInner,
               ]}
             >
-              <DynamicIcon
-                name={getIconForItem(item.item_name) as any}
-                size={60}
-                color={isItemSelected(item.item_name) ? '#fff' : '#666'}
-              />
+              <View
+                style={[
+                  styles.iconCircle,
+                  isItemSelected(item.item_name) && styles.iconCircleSelected,
+                ]}
+              >
+                <DynamicIcon
+                  name={getIconForItem(item.item_name) as any}
+                  size={scale(60)}
+                  color={isItemSelected(item.item_name) ? '#fff' : '#666'}
+                />
+              </View>
+              <Text style={styles.label}>{item.item_name}</Text>
             </View>
-            <Text style={styles.label}>{item.item_name}</Text>
-          </TouchableOpacity>
+          </Pressable>
         ))}
       </View>
       <View style={styles.buttonContainer}>

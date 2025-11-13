@@ -102,7 +102,7 @@ export default function AgreementModal({ visible, onClose, onComplete }: Agreeme
 
             {isLoading ? (
               <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color="#4CAF50" />
+                <ActivityIndicator size="large" color="#19CD72" />
                 <Text style={styles.loadingText}>약관 불러오는 중...</Text>
               </View>
             ) : (

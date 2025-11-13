@@ -1,6 +1,6 @@
 export const colors = {
   // Primary colors
-  primary: '#4CAF50',
+  primary: '#19CD72',
   primaryDark: '#388E3C',
   primaryLight: '#81C784',
 
@@ -26,7 +26,7 @@ export const colors = {
   textDisabled: '#BDBDBD',
 
   // Status colors
-  success: '#4CAF50',
+  success: '#19CD72',
   error: '#F44336',
   warning: '#FF9800',
   info: '#2196F3',

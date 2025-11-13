@@ -3,6 +3,7 @@ import { View, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './SplashScreen.styles';
 import { initializeDeviceRegistration } from '../services/deviceService';
+import { initializeAuth } from '../services/fmadAuthService';
 
 interface SplashScreenProps {
   onNext: () => void;
@@ -39,7 +40,7 @@ export default function SplashScreen({ onNext }: SplashScreenProps) {
     try {
       const success = await initializeDeviceRegistration();
       if (success) {
-        console.log('기기 등록 완료, 다음 화면으로 이동');
+        console.log('기기 등록 완료');
       } else {
         console.log('기기 등록 실패, 계속 진행');
       }
@@ -47,10 +48,22 @@ export default function SplashScreen({ onNext }: SplashScreenProps) {
       console.error('기기 등록 중 오류:', error);
     }
 
-    // 4. 최소 2초 표시 후 페이드아웃
+    // 4. FM AD 인증 처리
+    try {
+      const authSuccess = await initializeAuth();
+      if (authSuccess) {
+        console.log('FM AD 인증 완료');
+      } else {
+        console.log('FM AD 인증 실패, 광고 없이 진행');
+      }
+    } catch (error) {
+      console.error('FM AD 인증 중 오류:', error);
+    }
+
+    // 5. 최소 2초 표시 후 페이드아웃
     await new Promise<void>(resolve => setTimeout(() => resolve(), 1000));
 
-    // 5. 전체 화면 페이드아웃 (0.5초)
+    // 6. 전체 화면 페이드아웃 (0.5초)
     Animated.timing(screenOpacity, {
       toValue: 0,
       duration: 500,
@@ -65,7 +78,7 @@ export default function SplashScreen({ onNext }: SplashScreenProps) {
     <Animated.View style={[styles.container, { opacity: screenOpacity }]}>
       {/* Gradient Background - from-green-400 to-green-500 */}
       <LinearGradient
-        colors={['#4ade80', '#22c55e']} // Tailwind green-400 to green-500
+        colors={['#19CD72', '#19CD72']} // Tailwind green-400 to green-500
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.gradientBackground}

@@ -1,3 +1,4 @@
+import { scaleFont, scaleSpacing, scale } from "../utils/scaling";
 import { StyleSheet, Dimensions } from 'react-native';
 
 const { width } = Dimensions.get('window');
@@ -5,7 +6,7 @@ const { width } = Dimensions.get('window');
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#4CAF50', // Fallback color
+    backgroundColor: '#19CD72', // Fallback color
     position: 'relative',
   },
   gradientBackground: {
@@ -19,16 +20,16 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 60,
+    paddingHorizontal: scaleSpacing(60),
   },
   logoTreeImage: {
-    width: 264,
-    height: 264,
+    width: scale(264),
+    height: scale(264),
     // marginBottom: -40, // 간격을 최대한 줄이기 위해 음수 마진
   },
   logoTextImage: {
-    width: 368,
-    height: 200,
+    width: scale(368),
+    height: scale(200),
     // marginTop: -40, // 나무 이미지와 겹치도록
   },
 });

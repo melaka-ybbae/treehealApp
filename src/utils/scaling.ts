@@ -12,23 +12,21 @@ const WIDTH_SCALE = DEVICE_WIDTH / BASE_WIDTH;
 const HEIGHT_SCALE = DEVICE_HEIGHT / BASE_HEIGHT;
 
 /**
- * 너비 기준으로 스케일링
+ * 너비 기준으로 스케일링 (소수점 유지)
  * @param size 기준 해상도(1080px)에서의 크기
  * @returns 현재 디바이스에 맞게 스케일된 크기
  */
 export const scaleWidth = (size: number): number => {
-  const scaled = size * WIDTH_SCALE;
-  return Math.round(PixelRatio.roundToNearestPixel(scaled));
+  return size * WIDTH_SCALE;
 };
 
 /**
- * 높이 기준으로 스케일링
+ * 높이 기준으로 스케일링 (소수점 유지)
  * @param size 기준 해상도(1920px)에서의 크기
  * @returns 현재 디바이스에 맞게 스케일된 크기
  */
 export const scaleHeight = (size: number): number => {
-  const scaled = size * HEIGHT_SCALE;
-  return Math.round(PixelRatio.roundToNearestPixel(scaled));
+  return size * HEIGHT_SCALE;
 };
 
 /**
@@ -48,8 +46,7 @@ export const scaleFont = (size: number): number => {
  */
 export const scale = (size: number): number => {
   const minScale = Math.min(WIDTH_SCALE, HEIGHT_SCALE);
-  const scaled = size * minScale;
-  return Math.round(PixelRatio.roundToNearestPixel(scaled));
+  return size * minScale;
 };
 
 /**

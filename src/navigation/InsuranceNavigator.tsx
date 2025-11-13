@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ChevronLeftIcon } from '../components/Icons';
+import { ChevronLeftIcon, XIcon } from '../components/Icons';
 import { useInsurance } from '../context/InsuranceContext';
+import { scaleSpacing, scale } from '../utils/scaling';
 
 import SplashScreen from '../screens/SplashScreen';
 import RealtimeApplicationsScreen from '../screens/RealtimeApplicationsScreen';
@@ -131,6 +132,24 @@ export default function InsuranceNavigator() {
     setCurrentStep('realtime');
   };
 
+  const handleExit = () => {
+    Alert.alert(
+      '상담 신청 종료',
+      '상담 신청을 종료하시겠습니까?\n입력하신 정보는 저장되지 않습니다.',
+      [
+        {
+          text: '취소',
+          style: 'cancel',
+        },
+        {
+          text: '종료',
+          onPress: () => setCurrentStep('realtime'),
+          style: 'destructive',
+        },
+      ]
+    );
+  };
+
   const renderScreen = () => {
     switch (currentStep) {
       case 'splash':
@@ -162,21 +181,25 @@ export default function InsuranceNavigator() {
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      {/* Header */}
+      {/* Header with Back Button, Progress Bar, and Close Button */}
       <View style={styles.header}>
         <TouchableOpacity onPress={handleBack} style={styles.headerButton}>
-          <ChevronLeftIcon size={84} color="#000" />
+          <ChevronLeftIcon size={scale(32)} color="#000" />
+        </TouchableOpacity>
+
+        {/* Progress Bar in the middle */}
+        {showProgress && (
+          <View style={styles.progressBarContainer}>
+            <View
+              style={[styles.progressBar, { width: `${getProgressPercent()}%` }]}
+            />
+          </View>
+        )}
+
+        <TouchableOpacity onPress={handleExit} style={styles.headerButton}>
+          <XIcon size={scale(32)} color="#000" />
         </TouchableOpacity>
       </View>
-
-      {/* Progress Bar */}
-      {showProgress && (
-        <View style={styles.progressBarContainer}>
-          <View
-            style={[styles.progressBar, { width: `${getProgressPercent()}%` }]}
-          />
-        </View>
-      )}
 
       {/* Screen Content */}
       {renderScreen()}
@@ -192,20 +215,24 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 24, // 40 * 0.7 = 28 (30% 감소)
-    paddingVertical: 12, // 30 * 0.7 = 21 (30% 감소)
-    borderBottomWidth: 2, // 2 * 0.7 = 1.4 (30% 감소)
-    borderBottomColor: '#E5E7EB',
+    justifyContent: 'space-between',
+    paddingHorizontal: scaleSpacing(85),
+    paddingVertical: scaleSpacing(36),
   },
   headerButton: {
-    padding: 8,
+    padding: scaleSpacing(8),
   },
   progressBarContainer: {
-    height: 16, // 10 * 0.7 = 7 (30% 감소)
+    flex: 1,
+    height: scale(8),
     backgroundColor: '#E5E7EB',
+    marginHorizontal: scaleSpacing(120),
+    borderRadius: scale(8),
+    overflow: 'hidden',
   },
   progressBar: {
-    height: 15, // 10 * 0.7 = 7 (30% 감소)
-    backgroundColor: '#4CAF50',
+    height: '100%',
+    backgroundColor: '#19CD72',
+    borderRadius: scale(8),
   },
 });

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import Svg, { Path } from 'react-native-svg';
 
 interface IconProps {
   size?: number;
@@ -32,8 +33,10 @@ export const UsersIcon: React.FC<IconProps> = ({ size = 24, color = '#000' }) =>
 );
 
 export const ChevronLeftIcon: React.FC<IconProps> = ({ size = 24, color = '#000' }) => (
-  <View style={[styles.iconContainer, { width: size, height: size }]}>
-    <Text style={[styles.iconText, { fontSize: size, color }]}>‹</Text>
+  <View style={[styles.iconContainer, { width: 2*size, height: size }]}>
+    <Svg width={size} height={size} viewBox="0 0 24 38" fill="none">
+      <Path d="M20.0708 34.6558L4.24268 18.8278L20.0708 3" stroke={color} strokeWidth="6" strokeLinecap="round"/>
+    </Svg>
   </View>
 );
 
@@ -46,6 +49,15 @@ export const ChevronRightIcon: React.FC<IconProps> = ({ size = 24, color = '#000
 export const CheckIcon: React.FC<IconProps> = ({ size = 24, color = '#000' }) => (
   <View style={[styles.iconContainer, { width: size, height: size }]}>
     <Text style={[styles.iconText, { fontSize: size, color }]}>✓</Text>
+  </View>
+);
+
+export const XIcon: React.FC<IconProps> = ({ size = 24, color = '#000' }) => (
+  <View style={[styles.iconContainer, { width: 2*size, height: size }]}>
+    <Svg width={size} height={size} viewBox="0 0 38 38" fill="none">
+      <Path d="M34.6562 34.6558L18.8281 18.8278L34.6562 3" stroke={color} strokeWidth="6" strokeLinecap="round"/>
+      <Path d="M3 3L18.8281 18.828L3 34.6558" stroke={color} strokeWidth="6" strokeLinecap="round"/>
+    </Svg>
   </View>
 );
 

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, Pressable, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { DynamicIcon } from '../components/Icons';
 import { useInsurance } from '../context/InsuranceContext';
 import { getActiveCategories, ConsultationCategory } from '../services/categoryService';
 import { styles } from './ConsultationTypeScreen.styles';
+import { scale } from '../utils/scaling';
 
 interface ConsultationTypeScreenProps {
   onNext: () => void;
@@ -79,7 +80,7 @@ export default function ConsultationTypeScreen({ onNext }: ConsultationTypeScree
       <Text style={styles.title}>항목을 선택해 주세요.</Text>
       <View style={styles.optionsRow}>
         {categories.map((category) => (
-          <TouchableOpacity
+          <Pressable
             key={category.category_id}
             onPress={() => handleSelect(category.category_id, category.category_name)}
             style={[
@@ -89,18 +90,25 @@ export default function ConsultationTypeScreen({ onNext }: ConsultationTypeScree
           >
             <View
               style={[
-                styles.iconCircle,
-                formData.consultationType === category.category_id && styles.iconCircleSelected,
+                styles.optionCardInner,
+                formData.consultationType === category.category_id && styles.optionCardSelectedInner,
               ]}
             >
-              <DynamicIcon
-                name={getIconForCategory(category.category_name) as any}
-                size={80}
-                color={formData.consultationType === category.category_id ? '#fff' : '#666'}
-              />
+              <View
+                style={[
+                  styles.iconCircle,
+                  formData.consultationType === category.category_id && styles.iconCircleSelected,
+                ]}
+              >
+                <DynamicIcon
+                  name={getIconForCategory(category.category_name) as any}
+                  size={scale(80)}
+                  color={formData.consultationType === category.category_id ? '#fff' : '#666'}
+                />
+              </View>
+              <Text style={styles.optionLabel}>{category.category_name}</Text>
             </View>
-            <Text style={styles.optionLabel}>{category.category_name}</Text>
-          </TouchableOpacity>
+          </Pressable>
         ))}
       </View>
       <View style={styles.buttonContainer}>

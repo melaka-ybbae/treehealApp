@@ -23,29 +23,39 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   title: {
-    fontSize: 77,
+    fontSize: scaleFont(77),
     fontWeight: 'regular',
     letterSpacing: 0,
   },
   optionsRow: {
     flexDirection: 'row',
-    gap: scaleSpacing(80),
+    gap: scaleSpacing(70),
     marginTop: scaleSpacing(270),
     justifyContent: 'center',
-    alignItems: 'center',
+    // alignItems: 'center',
   },
   optionCard: {
-    width: 400,
-    height: 400,
-    borderWidth: scale(4),
-    borderColor: '#E5E7EB',
-    borderRadius: scale(32),
-    padding: scaleSpacing(50),
+    width: scale(400),
+    height: scale(400),
+    borderRadius: scale(40),
+    backgroundColor: '#E5E7EB',
+    padding: scale(4),
+    overflow: 'hidden',
+    alignContent: 'center'
+  },
+  optionCardInner: {
+    flex: 1,
+    borderRadius: scale(36),
+    backgroundColor: '#fff',
+    padding: scaleSpacing(56),
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    overflow: 'hidden',
   },
   optionCardSelected: {
-    borderColor: '#4CAF50',
+    backgroundColor: '#19CD72',
+  },
+  optionCardSelectedInner: {
     backgroundColor: '#F0FDF4',
   },
   iconCircle: {
@@ -56,13 +66,15 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: scaleSpacing(30),
+    overflow: 'hidden',
   },
   iconCircleSelected: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#19CD72',
   },
   optionLabel: {
-    fontSize: scaleFont(32),
+    fontSize: scaleFont(36),
     textAlign: 'center',
+    marginTop: scaleSpacing(30),
   },
   buttonContainer: {
     position: 'absolute',
@@ -70,14 +82,12 @@ export const styles = StyleSheet.create({
     left: 0,
     right: 0,
     padding: scaleSpacing(60),
-    borderTopWidth: scale(2),
-    borderTopColor: '#E5E7EB',
     backgroundColor: '#fff',
   },
   button: {
-    backgroundColor: '#4CAF50',
-    paddingVertical: 40,
-    borderRadius: 500,
+    backgroundColor: '#19CD72',
+    paddingVertical: scaleSpacing(40),
+    borderRadius: scale(500),
     alignItems: 'center',
   },
   buttonDisabled: {
@@ -85,7 +95,7 @@ export const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#fff',
-    fontSize: 40,
+    fontSize: scaleFont(40),
     fontWeight: '600',
   },
 });

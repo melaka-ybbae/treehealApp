@@ -126,11 +126,13 @@ export default function ReviewScreen({ onNext }: ReviewScreenProps) {
         <View style={styles.section}>
           <Text style={styles.label}>휴대전화번호</Text>
           <View style={styles.card}>
-            <Text style={styles.text}>
-              {formData.phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1-****-$3')}
-            </Text>
-            <View style={styles.check}>
-              <CheckIcon size={40} color="#fff" />
+            <View style={styles.cardInner}>
+              <Text style={styles.text}>
+                {formData.phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1-****-$3')}
+              </Text>
+              <View style={styles.check}>
+                <CheckIcon size={40} color="#fff" />
+              </View>
             </View>
           </View>
         </View>
@@ -138,17 +140,21 @@ export default function ReviewScreen({ onNext }: ReviewScreenProps) {
         <View style={styles.section}>
           <Text style={styles.label}>생년월일</Text>
           <View style={styles.card}>
-            <Text style={styles.text}>{formData.birthdate}</Text>
-            <Text style={styles.gender}>{formData.gender === 'male' ? '남성' : '여성'}</Text>
+            <View style={styles.cardInner}>
+              <Text style={styles.text}>{formData.birthdate}</Text>
+              <Text style={styles.gender}>{formData.gender === 'male' ? '남성' : '여성'}</Text>
+            </View>
           </View>
         </View>
 
         <View style={styles.section}>
           <Text style={styles.label}>성함</Text>
           <View style={styles.card}>
-            <Text style={styles.text}>{formData.name}</Text>
-            <View style={styles.check}>
-              <CheckIcon size={40} color="#fff" />
+            <View style={styles.cardInner}>
+              <Text style={styles.text}>{formData.name}</Text>
+              <View style={styles.check}>
+                <CheckIcon size={40} color="#fff" />
+              </View>
             </View>
           </View>
         </View>
@@ -158,11 +164,11 @@ export default function ReviewScreen({ onNext }: ReviewScreenProps) {
           <View style={styles.section}>
             <Text style={styles.label}>상담 항목</Text>
             <View style={styles.card}>
-              <Text style={styles.text}>
-                {getConsultationTypeLabel()}
-              </Text>
-              <View style={styles.check}>
-                <CheckIcon size={40} color="#fff" />
+              <View style={styles.cardInner}>
+                <Text style={styles.text}>{getConsultationTypeLabel()}</Text>
+                <View style={styles.check}>
+                  <CheckIcon size={40} color="#fff" />
+                </View>
               </View>
             </View>
           </View>
@@ -172,11 +178,13 @@ export default function ReviewScreen({ onNext }: ReviewScreenProps) {
           <View style={styles.section}>
             <Text style={styles.label}>상담 세부 항목</Text>
             <View style={styles.card}>
-              <Text style={styles.text}>
-                {getInterestsLabels()}
-              </Text>
-              <View style={styles.check}>
-                <CheckIcon size={40} color="#fff" />
+              <View style={styles.cardInner}>
+                <Text style={styles.text}>
+                  {getInterestsLabels()}
+                </Text>
+                <View style={styles.check}>
+                  <CheckIcon size={40} color="#fff" />
+                </View>
               </View>
             </View>
           </View>
@@ -186,9 +194,11 @@ export default function ReviewScreen({ onNext }: ReviewScreenProps) {
           <View style={styles.section}>
             <Text style={styles.label}>선택된 상담 전문가</Text>
             <View style={styles.card}>
-              <Text style={styles.text}>{expert.expert_name} 전문가</Text>
-              <View style={styles.check}>
-                <CheckIcon size={40} color="#fff" />
+              <View style={styles.cardInner}>
+                <Text style={styles.text}>{expert.expert_name} 전문가</Text>
+                <View style={styles.check}>
+                  <CheckIcon size={40} color="#fff" />
+                </View>
               </View>
             </View>
           </View>

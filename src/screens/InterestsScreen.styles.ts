@@ -1,11 +1,10 @@
-import { StyleSheet, Dimensions } from 'react-native';
-
-const { width } = Dimensions.get('window');
+import { StyleSheet } from 'react-native';
+import { scaleFont, scaleSpacing, scale } from '../utils/scaling';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 60,
+    padding: scaleSpacing(60),
     backgroundColor: '#fff',
   },
   centerContent: {
@@ -13,73 +12,88 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   loadingText: {
-    fontSize: 40,
+    fontSize: scaleFont(40),
     color: '#6B7280',
-    marginTop: 40,
+    marginTop: scaleSpacing(40),
   },
   emptyText: {
-    fontSize: 44,
+    fontSize: scaleFont(44),
     color: '#6B7280',
-    marginBottom: 60,
+    marginBottom: scaleSpacing(60),
     textAlign: 'center',
   },
   title: {
-    fontSize: 77,
+    fontSize: scaleFont(77),
     fontWeight: 'regular',
     letterSpacing: 0
   },
   tip: {
-    fontSize: 32,
+    fontSize: scaleFont(32),
     color: '#19CD72',
-    marginTop: 45,
-    marginBottom: 184
+    marginTop: scaleSpacing(45),
+    marginBottom: scaleSpacing(184)
   },
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 70,
+    gap: scaleSpacing(70),
     justifyContent: 'center'
   },
   card: {
-    width: 400,
-    height: 400,
-    padding: 60,
-    borderWidth: 4,
-    borderColor: '#E5E7EB',
-    borderRadius: 32,
+    width: scale(400),
+    height: scale(400),
+    borderRadius: scale(40),
+    backgroundColor: '#E5E7EB',
+    padding: scale(3),
+    overflow: 'hidden',
+    alignContent: 'center'
+  },
+  cardInner: {
+    flex: 1,
+    borderRadius: scale(36),
+    backgroundColor: '#fff',
+    padding: scaleSpacing(56),
     alignItems: 'center',
+    justifyContent: 'flex-start',
+    overflow: 'hidden',
   },
   cardSelected: {
-    borderColor: '#4CAF50',
+    backgroundColor: '#19CD72',
+  },
+  cardSelectedInner: {
     backgroundColor: '#F0FDF4',
   },
+  cardPressed: {
+    opacity: 0.8,
+  },
   iconCircle: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
+    width: scale(150),
+    height: scale(150),
+    borderRadius: scale(75),
     backgroundColor: '#F3F4F6',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 30,
+    marginBottom: scaleSpacing(30),
+    overflow: 'hidden',
   },
   iconCircleSelected: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#19CD72',
   },
   label: {
-    fontSize: 36,
-    marginTop: 30,
+    fontSize: scaleFont(36),
+    marginTop: scaleSpacing(30),
   },
   buttonContainer: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    padding: 60,
+    padding: scaleSpacing(60),
   },
   button: {
-    backgroundColor: '#4CAF50',
-    paddingVertical: 40,
-    borderRadius: 500,
+    backgroundColor: '#19CD72',
+    paddingVertical: scaleSpacing(40),
+    borderRadius: scale(500),
     alignItems: 'center',
   },
   buttonDisabled: {
@@ -87,7 +101,7 @@ export const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#fff',
-    fontSize: 40,
+    fontSize: scaleFont(40),
     fontWeight: '600',
   },
 });

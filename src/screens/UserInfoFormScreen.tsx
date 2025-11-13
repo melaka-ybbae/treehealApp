@@ -28,35 +28,39 @@ export default function UserInfoFormScreen({ onNext }: UserInfoFormScreenProps) 
       <View style={styles.scrollView}>
         <View style={styles.formGroup}>
           <Text style={styles.label}>휴대전화번호</Text>
-          <TextInput
-            style={styles.input}
-            value={formData.phone || ''}
-            onChangeText={(text) => {
-              const formatted = formatPhoneNumber(text);
-              updateFormData({ phone: formatted });
-            }}
-            placeholder="010-1234-5678"
-            placeholderTextColor="#999"
-            keyboardType="phone-pad"
-            maxLength={13}
-          />
+          <View style={styles.inputWrapper}>
+            <TextInput
+              style={styles.input}
+              value={formData.phone || ''}
+              onChangeText={(text) => {
+                const formatted = formatPhoneNumber(text);
+                updateFormData({ phone: formatted });
+              }}
+              placeholder="010-1234-5678"
+              placeholderTextColor="#999"
+              keyboardType="phone-pad"
+              maxLength={13}
+            />
+          </View>
         </View>
 
         <View style={styles.formRow}>
           <View style={styles.formGroupHalf}>
             <Text style={styles.label}>생년월일</Text>
-            <TextInput
-              style={styles.input}
-              value={formData.birthdate || ''}
-              onChangeText={(text) => {
-                const formatted = formatBirthDate(text);
-                updateFormData({ birthdate: formatted });
-              }}
-              placeholder="YYYY-MM-DD"
-              placeholderTextColor="#999"
-              keyboardType="numeric"
-              maxLength={10}
-            />
+            <View style={styles.inputWrapper}>
+              <TextInput
+                style={styles.input}
+                value={formData.birthdate || ''}
+                onChangeText={(text) => {
+                  const formatted = formatBirthDate(text);
+                  updateFormData({ birthdate: formatted });
+                }}
+                placeholder="YYYY-MM-DD"
+                placeholderTextColor="#999"
+                keyboardType="numeric"
+                maxLength={10}
+              />
+            </View>
           </View>
           <View style={styles.formGroupHalf}>
             <Text style={styles.label}>성별</Text>
@@ -68,14 +72,21 @@ export default function UserInfoFormScreen({ onNext }: UserInfoFormScreenProps) 
                 ]}
                 onPress={() => updateFormData({ gender: 'male' })}
               >
-                <Text
+                <View
                   style={[
-                    styles.genderButtonText,
-                    formData.gender === 'male' && styles.genderButtonTextSelected,
+                    styles.genderButtonInner,
+                    formData.gender === 'male' && styles.genderButtonSelectedInner,
                   ]}
                 >
-                  남성
-                </Text>
+                  <Text
+                    style={[
+                      styles.genderButtonText,
+                      formData.gender === 'male' && styles.genderButtonTextSelected,
+                    ]}
+                  >
+                    남성
+                  </Text>
+                </View>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[
@@ -84,14 +95,21 @@ export default function UserInfoFormScreen({ onNext }: UserInfoFormScreenProps) 
                 ]}
                 onPress={() => updateFormData({ gender: 'female' })}
               >
-                <Text
+                <View
                   style={[
-                    styles.genderButtonText,
-                    formData.gender === 'female' && styles.genderButtonTextSelected,
+                    styles.genderButtonInner,
+                    formData.gender === 'female' && styles.genderButtonSelectedInner,
                   ]}
                 >
-                  여성
-                </Text>
+                  <Text
+                    style={[
+                      styles.genderButtonText,
+                      formData.gender === 'female' && styles.genderButtonTextSelected,
+                    ]}
+                  >
+                    여성
+                  </Text>
+                </View>
               </TouchableOpacity>
             </View>
           </View>
@@ -99,13 +117,15 @@ export default function UserInfoFormScreen({ onNext }: UserInfoFormScreenProps) 
 
         <View style={styles.formGroup}>
           <Text style={styles.label}>성함</Text>
-          <TextInput
-            style={styles.input}
-            value={formData.name || ''}
-            onChangeText={(text) => updateFormData({ name: text })}
-            placeholder="홍길동"
-            placeholderTextColor="#999"
-          />
+          <View style={styles.inputWrapper}>
+            <TextInput
+              style={styles.input}
+              value={formData.name || ''}
+              onChangeText={(text) => updateFormData({ name: text })}
+              placeholder="홍길동"
+              placeholderTextColor="#999"
+            />
+          </View>
         </View>
       </View>
 

@@ -1,11 +1,12 @@
+import { scaleFont, scaleSpacing, scale } from "../utils/scaling";
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#4CAF50',
-    paddingVertical: 14,
-    paddingHorizontal: 24,
-    borderRadius: 8,
+    backgroundColor: '#19CD72',
+    paddingVertical: scaleSpacing(14),
+    paddingHorizontal: scaleSpacing(24),
+    borderRadius: scale(8),
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: 48,
@@ -16,7 +17,7 @@ export const styles = StyleSheet.create({
   buttonOutline: {
     backgroundColor: 'transparent',
     borderWidth: 2,
-    borderColor: '#4CAF50',
+    borderColor: '#19CD72',
   },
   buttonDisabled: {
     backgroundColor: '#cccccc',
@@ -24,14 +25,14 @@ export const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#ffffff',
-    fontSize: 16,
+    fontSize: scaleFont(16),
     fontWeight: '600',
   },
   buttonTextSecondary: {
     color: '#ffffff',
   },
   buttonTextOutline: {
-    color: '#4CAF50',
+    color: '#19CD72',
   },
   buttonTextDisabled: {
     color: '#666666',

@@ -12,15 +12,19 @@ export default function ConfirmationScreen({ onComplete }: ConfirmationScreenPro
     <View style={styles.container}>
       <View style={styles.content}>
         <View style={styles.iconContainer}>
-          <CheckIcon size={120} color="#fff" />
+          <View style={styles.iconContainerInner}>
+            <CheckIcon size={120} color="#fff" />
+          </View>
         </View>
         <Text style={styles.title}>상담 신청 완료</Text>
         <Text style={styles.text}>전문가가 확인 후</Text>
         <Text style={styles.text}>빠른 시일 내에 연락드리겠습니다.</Text>
         <View style={styles.note}>
-          <Text style={styles.noteText}>
-            📞 평균 <Text style={styles.bold}>1-2일 이내</Text> 연락드립니다
-          </Text>
+          <View style={styles.noteInner}>
+            <Text style={styles.noteText}>
+              📞 평균 <Text style={styles.bold}>1-2일 이내</Text> 연락드립니다
+            </Text>
+          </View>
         </View>
       </View>
 

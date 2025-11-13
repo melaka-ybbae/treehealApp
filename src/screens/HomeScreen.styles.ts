@@ -1,3 +1,4 @@
+import { scaleFont, scaleSpacing, scale } from "../utils/scaling";
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -6,47 +7,47 @@ export const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   header: {
-    backgroundColor: '#4CAF50',
-    padding: 30,
-    paddingTop: 60,
+    backgroundColor: '#19CD72',
+    padding: scaleSpacing(30),
+    paddingTop: scaleSpacing(60),
     alignItems: 'center',
   },
   title: {
-    fontSize: 32,
+    fontSize: scaleFont(32),
     fontWeight: 'bold',
     color: '#ffffff',
-    marginBottom: 8,
+    marginBottom: scaleSpacing(8),
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: scaleFont(16),
     color: '#ffffff',
     opacity: 0.9,
   },
   content: {
-    padding: 20,
+    padding: scaleSpacing(20),
   },
   card: {
     backgroundColor: '#ffffff',
-    borderRadius: 12,
-    padding: 20,
-    marginBottom: 16,
+    borderRadius: scale(12),
+    padding: scaleSpacing(20),
+    marginBottom: scaleSpacing(16),
     shadowColor: '#000',
     shadowOffset: {
-      width: 0,
-      height: 2,
+      width: scale(0),
+      height: scale(2),
     },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
   },
   cardTitle: {
-    fontSize: 20,
+    fontSize: scaleFont(20),
     fontWeight: '600',
     color: '#333333',
-    marginBottom: 12,
+    marginBottom: scaleSpacing(12),
   },
   cardText: {
-    fontSize: 15,
+    fontSize: scaleFont(15),
     color: '#666666',
     lineHeight: 22,
   },

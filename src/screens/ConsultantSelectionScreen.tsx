@@ -44,7 +44,7 @@ export default function ConsultantSelectionScreen({ onNext }: ConsultantSelectio
   if (isLoading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#22c55e" />
+        <ActivityIndicator size="large" color="#19CD72" />
         <Text style={styles.loadingText}>전문가 목록을 불러오는 중...</Text>
       </View>
     );

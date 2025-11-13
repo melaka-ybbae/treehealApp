@@ -52,7 +52,7 @@ export const styles = StyleSheet.create({
     color: '#374151',
   },
   closeButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#19CD72',
     margin: scaleSpacing(40),
     marginTop: scaleSpacing(20),
     paddingVertical: scaleSpacing(32),

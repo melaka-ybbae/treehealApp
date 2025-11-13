@@ -3,7 +3,10 @@
     "allow": [
       "Bash(npx react-native@latest init TreeHealAPP --skip-install)",
       "Bash(npx @react-native-community/cli init:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Read(//c/Users/lux02/Downloads/**)",
+      "Bash(find:*)",
+      "Bash(find . -type f ( -name \"*.ts\" -o -name \"*.tsx\" ) -exec sed -i \"s/''4CAF50''/''19CD72''/g\" {} +)"
     ],
     "deny": [],
     "ask": []

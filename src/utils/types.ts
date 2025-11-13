@@ -43,3 +43,31 @@ export type StepType =
   | 'user-info'
   | 'review'
   | 'confirmation';
+
+// FM AD API Types
+export interface AuthTokens {
+  access_token: string;
+  refresh_token: string;
+  Seed: number;
+  device_seed: number;
+  login_id: string;
+}
+
+export interface AdItem {
+  Seed: number;
+  Title: string;
+  Image: string;
+  LinkURL: string;
+}
+
+export interface AdSettings {
+  RotationType: 0 | 1; // 0: 순차 재생, 1: 랜덤 재생
+  RotationWaitTime: number; // 이미지 광고 표시 시간(초)
+  State: number;
+}
+
+export interface AdListResponse {
+  redirect_url: string;
+  setting: AdSettings;
+  adList: AdItem[];
+}
