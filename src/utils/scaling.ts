@@ -17,7 +17,8 @@ const HEIGHT_SCALE = DEVICE_HEIGHT / BASE_HEIGHT;
  * @returns 현재 디바이스에 맞게 스케일된 크기
  */
 export const scaleWidth = (size: number): number => {
-  return size * WIDTH_SCALE;
+  // return size * WIDTH_SCALE;
+  return size;
 };
 
 /**
@@ -35,7 +36,8 @@ export const scaleHeight = (size: number): number => {
  * @returns 현재 디바이스에 맞게 스케일된 폰트 크기
  */
 export const scaleFont = (size: number): number => {
-  return scaleWidth(size);
+  // return scaleWidth(size);
+  return size;
 };
 
 /**
@@ -46,7 +48,8 @@ export const scaleFont = (size: number): number => {
  */
 export const scale = (size: number): number => {
   const minScale = Math.min(WIDTH_SCALE, HEIGHT_SCALE);
-  return size * minScale;
+  // return size * minScale;
+  return size;
 };
 
 /**
@@ -54,7 +57,8 @@ export const scale = (size: number): number => {
  * 너비 기준으로 스케일링
  */
 export const scaleSpacing = (size: number): number => {
-  return scaleWidth(size);
+  // return scaleWidth(size);
+  return size;
 };
 
 /**

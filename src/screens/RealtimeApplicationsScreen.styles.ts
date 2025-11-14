@@ -154,7 +154,7 @@ export const styles = StyleSheet.create({
   // Bottom Contact - Fixed at bottom
   bottomContact: {
     position: 'absolute',
-    bottom: 20, // 더 낮춤 (0 -> 20)
+    bottom: 0, // 더 낮춤 (0 -> 20)
     left: 0,
     right: 0,
     width: scale(1080),

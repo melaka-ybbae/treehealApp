@@ -29,7 +29,7 @@ type StepType =
 export default function InsuranceNavigator() {
   const [currentStep, setCurrentStep] = useState<StepType>('splash');
   const [hasShownSplash, setHasShownSplash] = useState(false);
-  const { formData } = useInsurance();
+  const { formData, resetFormData } = useInsurance();
 
   const handleNext = (skipDetail?: boolean) => {
     const steps: StepType[] = [
@@ -129,6 +129,7 @@ export default function InsuranceNavigator() {
 
   const handleComplete = () => {
     // 완료 후 RealtimeApplicationScreen으로 돌아감
+    resetFormData(); // formData 초기화
     setCurrentStep('realtime');
   };
 
@@ -143,7 +144,10 @@ export default function InsuranceNavigator() {
         },
         {
           text: '종료',
-          onPress: () => setCurrentStep('realtime'),
+          onPress: () => {
+            resetFormData(); // formData 초기화
+            setCurrentStep('realtime');
+          },
           style: 'destructive',
         },
       ]

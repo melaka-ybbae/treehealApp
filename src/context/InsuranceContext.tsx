@@ -5,6 +5,7 @@ interface InsuranceContextType {
   formData: FormData;
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
   updateFormData: (updates: Partial<FormData>) => void;
+  resetFormData: () => void;
 }
 
 const InsuranceContext = createContext<InsuranceContextType | undefined>(undefined);
@@ -35,8 +36,12 @@ export const InsuranceProvider: React.FC<{ children: ReactNode }> = ({ children 
     setFormData(prev => ({ ...prev, ...updates }));
   };
 
+  const resetFormData = () => {
+    setFormData(initialFormData);
+  };
+
   return (
-    <InsuranceContext.Provider value={{ formData, setFormData, updateFormData }}>
+    <InsuranceContext.Provider value={{ formData, setFormData, updateFormData, resetFormData }}>
       {children}
     </InsuranceContext.Provider>
   );

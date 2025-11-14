@@ -241,7 +241,11 @@ export default function RealtimeApplicationsScreen({ onNext }: RealtimeApplicati
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
+      <TouchableOpacity
+        style={styles.content}
+        activeOpacity={1}
+        onPress={handleButtonPress}
+      >
         {/* Table Card */}
         <View style={styles.tableCard}>
           {/* Title inside card */}
@@ -321,7 +325,7 @@ export default function RealtimeApplicationsScreen({ onNext }: RealtimeApplicati
             </View>
           )}
         </View>
-      </View>
+      </TouchableOpacity>
 
       {/* Bottom Contact - Fixed */}
       <View style={styles.bottomContact}>
