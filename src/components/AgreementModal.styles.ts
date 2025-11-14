@@ -26,6 +26,7 @@ export const styles = StyleSheet.create({
     fontSize: scaleFont(46),
     fontWeight: '600',
     marginBottom: scaleSpacing(50),
+    includeFontPadding: false,
   },
   list: {
     marginBottom: scaleSpacing(50),
@@ -40,6 +41,7 @@ export const styles = StyleSheet.create({
     marginTop: scaleSpacing(30),
     fontSize: scaleFont(32),
     color: '#6B7280',
+    includeFontPadding: false,
   },
   itemAll: {
     flexDirection: 'row',
@@ -70,6 +72,7 @@ export const styles = StyleSheet.create({
     fontSize: scaleFont(28),
     fontWeight: '500',
     color: '#4B5563',
+    includeFontPadding: false,
   },
   divider: {
     height: scale(2),
@@ -94,14 +97,17 @@ export const styles = StyleSheet.create({
     fontSize: scaleFont(32),
     color: '#111827',
     flex: 1,
+    includeFontPadding: false,
   },
   required: {
     fontSize: scaleFont(28),
     color: '#19CD72',
+    includeFontPadding: false,
   },
   optional: {
     fontSize: scaleFont(28),
     color: '#9CA3AF',
+    includeFontPadding: false,
   },
   buttons: {
     flexDirection: 'row',
@@ -118,6 +124,7 @@ export const styles = StyleSheet.create({
     color: '#374151',
     fontSize: scaleFont(36),
     fontWeight: '600',
+    includeFontPadding: false,
   },
   buttonSubmit: {
     flex: 1,
@@ -133,5 +140,6 @@ export const styles = StyleSheet.create({
     color: '#fff',
     fontSize: scaleFont(36),
     fontWeight: '600',
+    includeFontPadding: false,
   },
 });

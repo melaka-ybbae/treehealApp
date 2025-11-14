@@ -33,14 +33,17 @@ export const styles = StyleSheet.create({
     fontSize: scaleFont(77),
     fontWeight: 'regular',
     letterSpacing: 0,
+    includeFontPadding: false,
   },
   text: {
     fontSize: scaleFont(40),
     color: '#6B7280',
     marginBottom: scaleSpacing(10),
+    includeFontPadding: false,
   },
   bold: {
     fontWeight: 'bold',
+    includeFontPadding: false,
   },
   buttonContainer: {
     padding: scaleSpacing(60),
@@ -58,5 +61,6 @@ export const styles = StyleSheet.create({
     color: '#fff',
     fontSize: scaleFont(40),
     fontWeight: '600',
+    includeFontPadding: false,
   },
 });

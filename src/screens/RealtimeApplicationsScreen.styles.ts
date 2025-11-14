@@ -30,6 +30,7 @@ export const styles = StyleSheet.create({
     color: '#19CD72',
     paddingTop: scaleSpacing(20),
     paddingBottom: scaleSpacing(20),
+    includeFontPadding: false,
   },
 
   // Table Header
@@ -45,6 +46,7 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
     color: '#19CD72',
     textAlign: 'center',
+    includeFontPadding: false,
   },
 
   // Table ScrollView
@@ -64,7 +66,7 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
     color: 'black',
     textAlign: 'center',
-    lineHeight: 40,
+    includeFontPadding: false,
   },
 
   // 지급완료 상태 (반짝임 효과만)
@@ -121,6 +123,7 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
     color: '#19CD72',
     textAlign: 'center',
+    includeFontPadding: false,
   },
 
   // Video Section (버튼과 푸터 사이 꽉 차게, 좌우 패딩 없음)
@@ -149,6 +152,7 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
     color: '#19CD72',
     marginTop: scaleSpacing(20),
+    includeFontPadding: false,
   },
 
   // Bottom Contact - Fixed at bottom
@@ -168,6 +172,6 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
     color: 'white',
     textAlign: 'center',
-    lineHeight: 80, // 높이와 동일하게 설정해서 가운데 정렬
+    includeFontPadding: false,
   },
 });

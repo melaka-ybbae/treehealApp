@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from './RealtimeApplicationsScreen.styles';
 import { AdListResponse, AdItem } from '../utils/types';
 import { fetchAdList, updateAdPlayTime, buildAdClickUrl, getNextAdIndex } from '../services/fmadService';
@@ -240,7 +239,7 @@ export default function RealtimeApplicationsScreen({ onNext }: RealtimeApplicati
   const videoHeight = SCREEN_HEIGHT - FOOTER_HEIGHT - tableHeight - buttonHeight;
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <TouchableOpacity
         style={styles.content}
         activeOpacity={1}
@@ -334,6 +333,6 @@ export default function RealtimeApplicationsScreen({ onNext }: RealtimeApplicati
 
       {/* Debug Panel (DEV_MODE only) */}
       <FMAdDebugPanel />
-    </SafeAreaView>
+    </View>
   );
 }

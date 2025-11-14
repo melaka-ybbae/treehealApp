@@ -27,7 +27,8 @@ export const scaleWidth = (size: number): number => {
  * @returns 현재 디바이스에 맞게 스케일된 크기
  */
 export const scaleHeight = (size: number): number => {
-  return size * HEIGHT_SCALE;
+  // return size * HEIGHT_SCALE;
+  return size;
 };
 
 /**

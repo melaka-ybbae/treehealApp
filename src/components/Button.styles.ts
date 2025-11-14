@@ -27,14 +27,18 @@ export const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: scaleFont(16),
     fontWeight: '600',
+    includeFontPadding: false,
   },
   buttonTextSecondary: {
     color: '#ffffff',
+    includeFontPadding: false,
   },
   buttonTextOutline: {
     color: '#19CD72',
+    includeFontPadding: false,
   },
   buttonTextDisabled: {
     color: '#666666',
+    includeFontPadding: false,
   },
 });

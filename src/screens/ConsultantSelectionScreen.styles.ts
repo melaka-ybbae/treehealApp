@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
     fontSize: scaleFont(77),
     fontWeight: 'regular',
     letterSpacing: 0,
+    includeFontPadding: false,
   },
   grid: {
     flexDirection: 'row',
@@ -65,6 +66,7 @@ export const styles = StyleSheet.create({
     fontSize: scaleFont(21),
     fontWeight: '500',
     textAlign: 'center',
+    includeFontPadding: false,
   },
   loadingContainer: {
     flex: 1,
@@ -78,12 +80,14 @@ export const styles = StyleSheet.create({
     color: '#666',
     marginTop: scaleSpacing(30),
     textAlign: 'center',
+    includeFontPadding: false,
   },
   emptyText: {
     fontSize: scaleFont(36),
     color: '#666',
     textAlign: 'center',
     marginBottom: scaleSpacing(40),
+    includeFontPadding: false,
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -105,6 +109,7 @@ export const styles = StyleSheet.create({
     fontSize: scaleFont(40),
     fontWeight: '600',
     textAlign: 'center',
+    includeFontPadding: false,
   },
   skipButton: {
     backgroundColor: '#6b7280',
@@ -119,5 +124,6 @@ export const styles = StyleSheet.create({
     fontSize: scaleFont(40),
     fontWeight: '600',
     textAlign: 'center',
+    includeFontPadding: false,
   },
 });

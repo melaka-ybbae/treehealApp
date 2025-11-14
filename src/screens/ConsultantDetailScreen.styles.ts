@@ -19,12 +19,14 @@ export const styles = StyleSheet.create({
     color: '#6B7280',
     marginTop: scaleSpacing(40),
     textAlign: 'center',
+    includeFontPadding: false,
   },
   emptyText: {
     fontSize: scaleFont(44),
     color: '#6B7280',
     marginBottom: scaleSpacing(60),
     textAlign: 'center',
+    includeFontPadding: false,
   },
   content: {
     padding: scaleSpacing(60),
@@ -41,6 +43,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'regular',
     marginBottom: scaleSpacing(80),
     textAlign: 'center',
+    includeFontPadding: false,
   },
   section: {
     width: '100%',
@@ -63,11 +66,13 @@ export const styles = StyleSheet.create({
     color: '#19CD72',
     textAlign: 'center',
     paddingHorizontal: scaleSpacing(10),
+    includeFontPadding: false,
   },
   sectionText: {
     fontSize: scaleFont(30),
     color: '#374151',
     textAlign: 'center',
+    includeFontPadding: false,
   },
   divider: {
     width: '100%',
@@ -92,7 +97,7 @@ export const styles = StyleSheet.create({
     fontSize: scaleFont(30),
     color: '#374151',
     textAlign: 'center',
-    lineHeight: 48,
+    includeFontPadding: false,
   },
   buttonContainer: {
     position: 'absolute',
@@ -117,6 +122,7 @@ export const styles = StyleSheet.create({
   buttonSecondaryText: {
     color: '#fff',
     fontSize: scaleFont(46),
+    includeFontPadding: false,
   },
   buttonPrimary: {
     flex: 1,
@@ -128,5 +134,6 @@ export const styles = StyleSheet.create({
   buttonPrimaryText: {
     color: '#fff',
     fontSize: scaleFont(46),
+    includeFontPadding: false,
   },
 });
