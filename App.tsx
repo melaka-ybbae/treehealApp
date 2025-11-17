@@ -6,8 +6,9 @@
  */
 
 import React, { useEffect } from 'react';
-import { StatusBar, Text, TextInput, Platform } from 'react-native';
+import { Text, TextInput, Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import { activateKeepAwakeAsync } from 'expo-keep-awake';
 import * as NavigationBar from 'expo-navigation-bar';
@@ -27,6 +28,8 @@ function App() {
     // Android 네비게이션 바 숨기기 (전체화면)
     if (Platform.OS === 'android') {
       NavigationBar.setVisibilityAsync('hidden');
+      NavigationBar.setBehaviorAsync('overlay-swipe');
+      NavigationBar.setPositionAsync('absolute');
     }
 
     // 앱 시작 시 스케일링 정보 출력
@@ -54,7 +57,7 @@ function App() {
   return (
     <SafeAreaProvider>
       <InsuranceProvider>
-        <StatusBar hidden={true} />
+        <StatusBar hidden />
         <InsuranceNavigator />
       </InsuranceProvider>
     </SafeAreaProvider>

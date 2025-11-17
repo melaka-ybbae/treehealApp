@@ -32,7 +32,7 @@ export const scaleHeight = (size: number): number => {
 };
 
 /**
- * 폰트 크기 스케일링 (너비 기준)
+ * 폰트 크기 스케일링 (너비 기준)  
  * @param size 기준 해상도에서의 폰트 크기
  * @returns 현재 디바이스에 맞게 스케일된 폰트 크기
  */

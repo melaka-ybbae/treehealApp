@@ -53,9 +53,21 @@ export const styles = StyleSheet.create({
     color: '#000',
     borderWidth: 0,
     includeFontPadding: false,
+    justifyContent: 'center',
     // @ts-ignore - Web specific property
     outlineStyle: 'none',
   } as any,
+  inputActive: {
+    backgroundColor: '#F0FDF4',
+  },
+  inputText: {
+    fontSize: scaleFont(40),
+    color: '#000',
+    includeFontPadding: false,
+  },
+  inputPlaceholder: {
+    color: '#999',
+  },
   genderButtons: {
     flexDirection: 'row',
     gap: scale(20),
