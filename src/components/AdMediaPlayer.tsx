@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Image, TouchableOpacity, Linking } from 'react-native';
+import { View, Image } from 'react-native';
 import { Video, ResizeMode, AVPlaybackStatus } from 'expo-av';
 import { AdItem } from '../utils/types';
 import { getMediaType } from '../services/fmadService';
@@ -76,16 +76,11 @@ export default function AdMediaPlayer({
   };
 
   const handleAdPress = () => {
-    if (clickUrl && clickUrl !== '' && onAdClick) {
-      onAdClick(clickUrl);
-      // 외부 브라우저로 링크 열기
-      Linking.openURL(clickUrl).catch(err =>
-        console.error('링크 열기 실패:', err)
-      );
-    }
+    // 광고 클릭 기능 비활성화
+    console.log('[AdMediaPlayer] 광고 클릭 비활성화됨');
   };
 
-  const isClickable = clickUrl && clickUrl !== '';
+  const isClickable = false; // 광고 클릭 완전 비활성화
 
   const containerStyle = [
     styles.container,
@@ -95,12 +90,7 @@ export default function AdMediaPlayer({
 
   if (mediaType === 'video') {
     return (
-      <TouchableOpacity
-        style={containerStyle}
-        onPress={handleAdPress}
-        activeOpacity={isClickable ? 0.8 : 1}
-        disabled={!isClickable}
-      >
+      <View style={containerStyle}>
         <Video
           ref={videoRef}
           style={styles.video}
@@ -114,24 +104,19 @@ export default function AdMediaPlayer({
           useNativeControls={false}
           onPlaybackStatusUpdate={handleVideoPlaybackStatusUpdate}
         />
-      </TouchableOpacity>
+      </View>
     );
   }
 
   if (mediaType === 'image') {
     return (
-      <TouchableOpacity
-        style={containerStyle}
-        onPress={handleAdPress}
-        activeOpacity={isClickable ? 0.8 : 1}
-        disabled={!isClickable}
-      >
+      <View style={containerStyle}>
         <Image
           source={{ uri: ad.Image }}
           style={styles.media}
           resizeMode="contain"
         />
-      </TouchableOpacity>
+      </View>
     );
   }
 

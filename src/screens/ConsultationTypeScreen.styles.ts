@@ -15,17 +15,20 @@ export const styles = StyleSheet.create({
     fontSize: scaleFont(40),
     color: '#6B7280',
     marginTop: scaleSpacing(40),
+    includeFontPadding: false,
   },
   emptyText: {
     fontSize: scaleFont(44),
     color: '#6B7280',
     marginBottom: scaleSpacing(60),
     textAlign: 'center',
+    includeFontPadding: false,
   },
   title: {
     fontSize: scaleFont(77),
     fontWeight: 'regular',
     letterSpacing: 0,
+    includeFontPadding: false,
   },
   optionsRow: {
     flexDirection: 'row',
@@ -75,6 +78,7 @@ export const styles = StyleSheet.create({
     fontSize: scaleFont(36),
     textAlign: 'center',
     marginTop: scaleSpacing(30),
+    includeFontPadding: false,
   },
   buttonContainer: {
     position: 'absolute',
@@ -97,5 +101,6 @@ export const styles = StyleSheet.create({
     color: '#fff',
     fontSize: scaleFont(40),
     fontWeight: '600',
+    includeFontPadding: false,
   },
 });

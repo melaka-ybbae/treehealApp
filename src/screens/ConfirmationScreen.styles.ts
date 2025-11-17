@@ -33,31 +33,17 @@ export const styles = StyleSheet.create({
     fontSize: scaleFont(77),
     fontWeight: 'regular',
     letterSpacing: 0,
+    includeFontPadding: false,
   },
   text: {
     fontSize: scaleFont(40),
     color: '#6B7280',
     marginBottom: scaleSpacing(10),
-  },
-  note: {
-    backgroundColor: '#19CD72',
-    borderRadius: scale(24),
-    padding: scale(4),
-    marginTop: scaleSpacing(80),
-    overflow: 'hidden',
-  },
-  noteInner: {
-    flex: 1,
-    backgroundColor: '#F0FDF4',
-    borderRadius: scale(20),
-    padding: scaleSpacing(40),
-  },
-  noteText: {
-    fontSize: scaleFont(36),
-    color: '#19CD72',
+    includeFontPadding: false,
   },
   bold: {
     fontWeight: 'bold',
+    includeFontPadding: false,
   },
   buttonContainer: {
     padding: scaleSpacing(60),
@@ -75,5 +61,6 @@ export const styles = StyleSheet.create({
     color: '#fff',
     fontSize: scaleFont(40),
     fontWeight: '600',
+    includeFontPadding: false,
   },
 });

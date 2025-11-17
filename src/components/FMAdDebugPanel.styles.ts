@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
   },
   floatingButtonText: {
     fontSize: scaleFont(24),
+    includeFontPadding: false,
   },
   modalOverlay: {
     flex: 1,
@@ -40,6 +41,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: scaleSpacing(20),
     textAlign: 'center',
+    includeFontPadding: false,
   },
   statusBox: {
     backgroundColor: '#f3f4f6',
@@ -50,6 +52,7 @@ export const styles = StyleSheet.create({
   statusText: {
     fontSize: scaleFont(14),
     color: '#374151',
+    includeFontPadding: false,
   },
   button: {
     backgroundColor: '#19CD72',
@@ -66,5 +69,6 @@ export const styles = StyleSheet.create({
     fontSize: scaleFont(16),
     fontWeight: '600',
     textAlign: 'center',
+    includeFontPadding: false,
   },
 });

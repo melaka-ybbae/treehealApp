@@ -8,7 +8,10 @@
     "ios": "expo run:ios",
     "web": "expo start --web",
     "lint": "eslint .",
-    "test": "jest"
+    "test": "jest",
+    "clean": "rm -rf android/app/build android/.gradle ios/build",
+    "clean:android": "cd android && ./gradlew clean",
+    "clean:full": "rm -rf node_modules android/app/build android/.gradle ios/build && npm install"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.4.2",

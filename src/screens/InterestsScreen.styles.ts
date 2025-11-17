@@ -15,23 +15,27 @@ export const styles = StyleSheet.create({
     fontSize: scaleFont(40),
     color: '#6B7280',
     marginTop: scaleSpacing(40),
+    includeFontPadding: false,
   },
   emptyText: {
     fontSize: scaleFont(44),
     color: '#6B7280',
     marginBottom: scaleSpacing(60),
     textAlign: 'center',
+    includeFontPadding: false,
   },
   title: {
     fontSize: scaleFont(77),
     fontWeight: 'regular',
-    letterSpacing: 0
+    letterSpacing: 0,
+    includeFontPadding: false,
   },
   tip: {
     fontSize: scaleFont(32),
     color: '#19CD72',
     marginTop: scaleSpacing(45),
-    marginBottom: scaleSpacing(184)
+    marginBottom: scaleSpacing(184),
+    includeFontPadding: false,
   },
   grid: {
     flexDirection: 'row',
@@ -82,6 +86,7 @@ export const styles = StyleSheet.create({
   label: {
     fontSize: scaleFont(36),
     marginTop: scaleSpacing(30),
+    includeFontPadding: false,
   },
   buttonContainer: {
     position: 'absolute',
@@ -103,5 +108,6 @@ export const styles = StyleSheet.create({
     color: '#fff',
     fontSize: scaleFont(40),
     fontWeight: '600',
+    includeFontPadding: false,
   },
 });

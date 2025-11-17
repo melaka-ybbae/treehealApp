@@ -54,7 +54,7 @@ function App() {
   return (
     <SafeAreaProvider>
       <InsuranceProvider>
-        <StatusBar barStyle="dark-content" />
+        <StatusBar hidden={true} />
         <InsuranceNavigator />
       </InsuranceProvider>
     </SafeAreaProvider>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from './RealtimeApplicationsScreen.styles';
 import { AdListResponse, AdItem } from '../utils/types';
 import { fetchAdList, updateAdPlayTime, buildAdClickUrl, getNextAdIndex } from '../services/fmadService';
@@ -64,9 +63,9 @@ const generateRandomRow = (): TableRow => {
   };
 };
 
-// 초기 테이블 데이터 생성 (10개 - 스크롤용)
+// 초기 테이블 데이터 생성 (50개)
 const generateInitialTableData = (): TableRow[] => {
-  return Array.from({ length: 10 }, () => generateRandomRow());
+  return Array.from({ length: 50 }, () => generateRandomRow());
 };
 
 const SCREEN_HEIGHT = 1920;
@@ -109,32 +108,45 @@ export default function RealtimeApplicationsScreen({ onNext }: RealtimeApplicati
     return () => clearInterval(interval);
   }, []);
 
-  // 테이블 자동 스크롤 (3초마다 새 데이터 추가 및 오래된 데이터 삭제)
+  // 테이블 자동 스크롤 (3초마다)
   useEffect(() => {
     const ROW_HEIGHT = 60; // 각 행의 높이
     const SCROLL_INTERVAL = 3000; // 3초
-    const ANIMATION_DURATION = 500; // 스크롤 애니메이션 시간
+    const VISIBLE_ROWS = 5; // 화면에 보이는 행 수
+    const TOTAL_ROWS = 50; // 전체 데이터 행 수
+    const MAX_SCROLL = (TOTAL_ROWS - VISIBLE_ROWS) * ROW_HEIGHT; // 최대 스크롤 가능 거리
+    let currentScrollY = 0;
 
     const interval = setInterval(() => {
-      // 1. 먼저 스크롤을 한 칸 올리기 (애니메이션)
-      if (scrollViewRef.current) {
-        scrollViewRef.current.scrollTo({ y: ROW_HEIGHT, animated: true });
+      // 현재 스크롤 위치에서 ROW_HEIGHT만큼 아래로 이동
+      currentScrollY += ROW_HEIGHT;
+
+      // 끝에 도달하면 처음으로 되돌리기
+      if (currentScrollY > MAX_SCROLL) {
+        currentScrollY = 0;
       }
 
-      // 2. 애니메이션 완료 후 데이터 변경 + 스크롤 리셋 동시 실행
-      setTimeout(() => {
-        // 새로운 랜덤 행을 끝에 추가하고 첫 번째 행 삭제
-        setTableData((prevData) => {
-          const newData = [...prevData.slice(1), generateRandomRow()];
-          return newData;
-        });
-
-        // 데이터 변경과 동시에 스크롤 리셋
-        if (scrollViewRef.current) {
-          scrollViewRef.current.scrollTo({ y: 0, animated: false });
-        }
-      }, ANIMATION_DURATION); // 애니메이션 완료 시점
+      if (scrollViewRef.current) {
+        scrollViewRef.current.scrollTo({ y: currentScrollY, animated: true });
+      }
     }, SCROLL_INTERVAL);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // 데이터 업데이트 (1시간마다 10개 추가 및 10개 삭제)
+  useEffect(() => {
+    const DATA_UPDATE_INTERVAL = 60 * 60 * 1000; // 1시간 (밀리초)
+
+    const interval = setInterval(() => {
+      setTableData((prevData) => {
+        // 새로운 10개 데이터 생성
+        const newRows = Array.from({ length: 10 }, () => generateRandomRow());
+        // 마지막 10개 삭제하고 앞에 새로운 10개 추가
+        const updatedData = [...newRows, ...prevData.slice(0, -10)];
+        return updatedData;
+      });
+    }, DATA_UPDATE_INTERVAL);
 
     return () => clearInterval(interval);
   }, []);
@@ -227,8 +239,12 @@ export default function RealtimeApplicationsScreen({ onNext }: RealtimeApplicati
   const videoHeight = SCREEN_HEIGHT - FOOTER_HEIGHT - tableHeight - buttonHeight;
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
+    <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.content}
+        activeOpacity={1}
+        onPress={handleButtonPress}
+      >
         {/* Table Card */}
         <View style={styles.tableCard}>
           {/* Title inside card */}
@@ -308,7 +324,7 @@ export default function RealtimeApplicationsScreen({ onNext }: RealtimeApplicati
             </View>
           )}
         </View>
-      </View>
+      </TouchableOpacity>
 
       {/* Bottom Contact - Fixed */}
       <View style={styles.bottomContact}>
@@ -317,6 +333,6 @@ export default function RealtimeApplicationsScreen({ onNext }: RealtimeApplicati
 
       {/* Debug Panel (DEV_MODE only) */}
       <FMAdDebugPanel />
-    </SafeAreaView>
+    </View>
   );
 }

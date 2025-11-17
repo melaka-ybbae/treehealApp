@@ -29,6 +29,7 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#111',
     flex: 1,
+    includeFontPadding: false,
   },
   requiredBadge: {
     backgroundColor: '#EF4444',
@@ -41,6 +42,7 @@ export const styles = StyleSheet.create({
     color: '#fff',
     fontSize: scaleFont(24),
     fontWeight: '600',
+    includeFontPadding: false,
   },
   contentContainer: {
     maxHeight: '70%',
@@ -48,8 +50,8 @@ export const styles = StyleSheet.create({
   },
   content: {
     fontSize: scaleFont(32),
-    lineHeight: scaleFont(48),
     color: '#374151',
+    includeFontPadding: false,
   },
   closeButton: {
     backgroundColor: '#19CD72',
@@ -63,5 +65,6 @@ export const styles = StyleSheet.create({
     color: '#fff',
     fontSize: scaleFont(36),
     fontWeight: '600',
+    includeFontPadding: false,
   },
 });

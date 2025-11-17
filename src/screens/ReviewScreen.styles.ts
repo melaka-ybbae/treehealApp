@@ -14,7 +14,8 @@ export const styles = StyleSheet.create({
     fontSize: scaleFont(64),
     fontWeight: 'regular',
     letterSpacing: 0,
-    marginBottom: scaleSpacing(92)
+    marginBottom: scaleSpacing(92),
+    includeFontPadding: false,
   },
   section: {
     marginBottom: scaleSpacing(48),
@@ -23,6 +24,7 @@ export const styles = StyleSheet.create({
     fontSize: scaleFont(28),
     color: '#000000ff',
     marginBottom: scaleSpacing(20),
+    includeFontPadding: false,
   },
   card: {
     backgroundColor: '#19CD72',
@@ -32,19 +34,19 @@ export const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   cardInner: {
-    flex: 1,
     backgroundColor: '#FFFFFFF6',
     borderRadius: scale(27),
     padding: scaleSpacing(20),
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    minHeight: 70,
+    minHeight: scale(120),
   },
   text: {
     fontSize: scaleFont(36),
     color: '#111827',
     flex: 1,
+    includeFontPadding: false,
   },
   gender: {
     fontSize: scaleFont(36),
@@ -54,6 +56,7 @@ export const styles = StyleSheet.create({
     paddingVertical: scaleSpacing(15),
     paddingHorizontal: scaleSpacing(40),
     borderRadius: scale(32),
+    includeFontPadding: false,
   },
   check: {
     width: scale(60),
@@ -77,5 +80,6 @@ export const styles = StyleSheet.create({
     color: '#fff',
     fontSize: scaleFont(40),
     fontWeight: '600',
+    includeFontPadding: false,
   },
 });

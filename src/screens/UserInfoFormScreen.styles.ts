@@ -18,6 +18,7 @@ export const styles = StyleSheet.create({
     fontSize: scaleFont(64),
     fontWeight: 'regular',
     letterSpacing: 0,
+    includeFontPadding: false,
   },
   formGroup: {
     marginBottom: scaleSpacing(50),
@@ -36,6 +37,7 @@ export const styles = StyleSheet.create({
     fontSize: scaleFont(28),
     color: '#000000ff',
     marginBottom: scaleSpacing(20),
+    includeFontPadding: false,
   },
   inputWrapper: {
     borderRadius: scale(24),
@@ -50,6 +52,7 @@ export const styles = StyleSheet.create({
     fontSize: scaleFont(40),
     color: '#000',
     borderWidth: 0,
+    includeFontPadding: false,
     // @ts-ignore - Web specific property
     outlineStyle: 'none',
   } as any,
@@ -80,10 +83,12 @@ export const styles = StyleSheet.create({
   genderButtonText: {
     fontSize: scaleFont(36),
     color: '#6B7280',
+    includeFontPadding: false,
   },
   genderButtonTextSelected: {
     color: '#19CD72',
     fontWeight: '600',
+    includeFontPadding: false,
   },
   regionScroll: {
     marginTop: scaleSpacing(20),
@@ -111,10 +116,12 @@ export const styles = StyleSheet.create({
   regionChipText: {
     fontSize: scaleFont(32),
     color: '#6B7280',
+    includeFontPadding: false,
   },
   regionChipTextSelected: {
     color: '#19CD72',
     fontWeight: '600',
+    includeFontPadding: false,
   },
   buttonContainer: {
     padding: scaleSpacing(60),
@@ -134,5 +141,6 @@ export const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontSize: scaleFont(40),
+    includeFontPadding: false,
   },
 });

@@ -6,30 +6,36 @@
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "platforms": ["ios", "android", "web"],
+    "plugins": [
+      "./plugins/withFullscreen.js"
+    ],
     "splash": {
       "resizeMode": "contain",
       "backgroundColor": "#4CAF50"
+    },
+    "androidStatusBar": {
+      "hidden": true
+    },
+    "androidNavigationBar": {
+      "visible": false
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.treeheal.app"
+      "bundleIdentifier": "com.treeheal.app",
+      "infoPlist": {
+        "UIViewControllerBasedStatusBarAppearance": false,
+        "UIStatusBarHidden": true
+      }
     },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#4CAF50"
       },
       "package": "com.treeheal.app",
-      "usesCleartextTraffic": true,
-      "statusBar": {
-        "hidden": true,
-        "backgroundColor": "#19CD72"
-      },
-      "navigationBar": {
-        "visible": false
-      }
+      "softwareKeyboardLayoutMode": "pan"
     },
     "web": {
       "bundler": "metro"
