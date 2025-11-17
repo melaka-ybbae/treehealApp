@@ -29,7 +29,7 @@ type StepType =
 export default function InsuranceNavigator() {
   const [currentStep, setCurrentStep] = useState<StepType>('splash');
   const [hasShownSplash, setHasShownSplash] = useState(false);
-  const { formData } = useInsurance();
+  const { formData, resetFormData } = useInsurance();
 
   const handleNext = (skipDetail?: boolean) => {
     const steps: StepType[] = [
@@ -128,11 +128,15 @@ export default function InsuranceNavigator() {
   };
 
   const handleComplete = () => {
-    // 완료 후 RealtimeApplicationScreen으로 돌아감
+    // 완료 후 폼 데이터 초기화 및 RealtimeApplicationScreen으로 돌아감
+    resetFormData();
     setCurrentStep('realtime');
   };
 
   const handleExit = () => {
+    console.log('handleExit 호출됨');
+
+    // 웹과 네이티브 모두 Alert 사용 (react-native-web에서 Alert 지원)
     Alert.alert(
       '상담 신청 종료',
       '상담 신청을 종료하시겠습니까?\n입력하신 정보는 저장되지 않습니다.',
@@ -143,7 +147,11 @@ export default function InsuranceNavigator() {
         },
         {
           text: '종료',
-          onPress: () => setCurrentStep('realtime'),
+          onPress: () => {
+            console.log('종료 선택됨');
+            resetFormData();
+            setCurrentStep('realtime');
+          },
           style: 'destructive',
         },
       ]

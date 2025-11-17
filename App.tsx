@@ -6,10 +6,11 @@
  */
 
 import React, { useEffect } from 'react';
-import { StatusBar, Text, TextInput } from 'react-native';
+import { StatusBar, Text, TextInput, Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { activateKeepAwakeAsync } from 'expo-keep-awake';
+import * as NavigationBar from 'expo-navigation-bar';
 import { InsuranceProvider } from './src/context/InsuranceContext';
 import InsuranceNavigator from './src/navigation/InsuranceNavigator';
 import { logScalingInfo } from './src/utils/scaling';
@@ -22,6 +23,11 @@ function App() {
   useEffect(() => {
     // 화면 꺼짐 방지 활성화
     activateKeepAwakeAsync();
+
+    // Android 네비게이션 바 숨기기 (전체화면)
+    if (Platform.OS === 'android') {
+      NavigationBar.setVisibilityAsync('hidden');
+    }
 
     // 앱 시작 시 스케일링 정보 출력
     logScalingInfo();

@@ -139,7 +139,7 @@ $path = [System.Environment]::GetEnvironmentVariable('PATH', 'Machine')
    - Click "Finish"
 
 ### Step 6: Verify Setup
-
+eyeon2021@naver.com 조예주사원
 **Close and reopen your terminal, then run:**
 ```bash
 # Check Java

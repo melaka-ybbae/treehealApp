@@ -2,7 +2,7 @@ import { Dimensions, PixelRatio } from 'react-native';
 
 // 기준 디자인 해상도 (1080 x 1920)
 const BASE_WIDTH = 1080;
-const BASE_HEIGHT = 1920;
+const BASE_HEIGHT = 1864;
 
 // 현재 디바이스 해상도
 const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window');

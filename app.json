@@ -21,7 +21,15 @@
       "adaptiveIcon": {
         "backgroundColor": "#4CAF50"
       },
-      "package": "com.treeheal.app"
+      "package": "com.treeheal.app",
+      "usesCleartextTraffic": true,
+      "statusBar": {
+        "hidden": true,
+        "backgroundColor": "#19CD72"
+      },
+      "navigationBar": {
+        "visible": false
+      }
     },
     "web": {
       "bundler": "metro"
