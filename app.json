@@ -1,18 +1,15 @@
 {
   "expo": {
-    "name": "TreeHeal Insurance App",
+    "name": "트리힐",
     "slug": "treeheal-app",
     "version": "1.0.0",
     "orientation": "portrait",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "platforms": ["ios", "android", "web"],
     "plugins": [
       "./plugins/withFullscreen.js"
     ],
-    "splash": {
-      "resizeMode": "contain",
-      "backgroundColor": "#4CAF50"
-    },
     "androidStatusBar": {
       "hidden": true
     },
@@ -31,9 +28,6 @@
       }
     },
     "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#4CAF50"
-      },
       "package": "com.treeheal.app",
       "softwareKeyboardLayoutMode": "pan"
     },

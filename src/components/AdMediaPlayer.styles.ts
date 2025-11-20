@@ -2,11 +2,9 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
+    flex: 1,
     width: '100%',
-    overflow: 'hidden',
     backgroundColor: '#000',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   clickable: {
     cursor: 'pointer',
@@ -17,6 +15,6 @@ export const styles = StyleSheet.create({
   },
   video: {
     width: '100%',
-    aspectRatio: 16 / 9, // 기본 비율, 실제 비디오 비율에 맞게 조정됨
+    height: '100%',
   },
 });

@@ -139,7 +139,7 @@ $path = [System.Environment]::GetEnvironmentVariable('PATH', 'Machine')
    - Click "Finish"
 
 ### Step 6: Verify Setup
-eyeon2021@naver.com 조예주사원
+
 **Close and reopen your terminal, then run:**
 ```bash
 # Check Java
@@ -241,7 +241,7 @@ npm start -- --reset-cache
 
 ---
 
-## Alternative: Use Physical Android Device
+## Alternative: Use Physical Android Device  
 
 If you have an Android phone:
 

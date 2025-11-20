@@ -15,12 +15,14 @@ export const styles = StyleSheet.create({
     right: 0,
     top: 0,
     bottom: 0,
+    zIndex: 0,
   },
   content: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: scaleSpacing(60),
+    zIndex: 1,
   },
   logoTreeImage: {
     width: scale(264),

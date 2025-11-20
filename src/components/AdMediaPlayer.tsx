@@ -11,7 +11,7 @@ interface AdMediaPlayerProps {
   displayDuration: number; // 이미지 광고 표시 시간(초)
   onAdClick?: (clickUrl: string) => void; // 광고 클릭 시 호출
   clickUrl: string; // 광고 클릭 URL (빈 문자열이면 클릭 불가)
-  height: number; // 플레이어 높이
+  height?: number; // 플레이어 높이 (optional, 없으면 flex로 채움)
 }
 
 export default function AdMediaPlayer({
@@ -75,27 +75,21 @@ export default function AdMediaPlayer({
     }
   };
 
-  const handleAdPress = () => {
-    // 광고 클릭 기능 비활성화
-    console.log('[AdMediaPlayer] 광고 클릭 비활성화됨');
-  };
-
-  const isClickable = false; // 광고 클릭 완전 비활성화
-
-  const containerStyle = [
-    styles.container,
-    { height },
-    isClickable && styles.clickable,
-  ];
-
   if (mediaType === 'video') {
     return (
-      <View style={containerStyle}>
+      <View style={styles.container}>
         <Video
           ref={videoRef}
-          style={styles.video}
+          style={{
+            width: '100%',
+            height: '100%',
+          }}
+          videoStyle={{
+            width: '100%',
+            height: '100%',
+          }}
           source={{ uri: ad.Image }}
-          resizeMode={ResizeMode.CONTAIN}
+          resizeMode={ResizeMode.COVER}
           shouldPlay={true}
           isLooping={false}
           isMuted={true}
@@ -110,16 +104,16 @@ export default function AdMediaPlayer({
 
   if (mediaType === 'image') {
     return (
-      <View style={containerStyle}>
+      <View style={styles.container}>
         <Image
           source={{ uri: ad.Image }}
           style={styles.media}
-          resizeMode="contain"
+          resizeMode="cover"
         />
       </View>
     );
   }
 
   // 미디어 타입을 알 수 없는 경우 빈 화면
-  return <View style={[styles.container, { height }]} />;
+  return <View style={styles.container} />;
 }

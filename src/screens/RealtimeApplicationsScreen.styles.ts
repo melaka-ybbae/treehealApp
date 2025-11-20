@@ -128,10 +128,9 @@ export const styles = StyleSheet.create({
 
   // Video Section (버튼과 푸터 사이 꽉 차게, 좌우 패딩 없음)
   videoContainer: {
-    width: '100%', // 전체 너비
-    marginTop: scaleSpacing(20),
-    flex: 1, // 남은 공간 모두 차지
-    minHeight: 400, // 최소 높이 설정
+    width: '100%',
+    flex: 1,
+    backgroundColor: '#000',
   },
   videoPlaceholder: {
     width: '100%',
